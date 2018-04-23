@@ -3,21 +3,87 @@
   <title>UCSD wifi</title>
   <script src="jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="./style/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
 
   <body>
     <h1>Welcome to the UCSD wifi map!</h1>
+    <div class="break"></div>
 
-    Name: <input id="nameBox" type="text" size="20"/>
-    <button id="readButton">Get profile</button>
-    <button id="allUsersButton">Get all usernames</button>
+    <div id="top_bar">
+      <h4 class="text-label">Good For:</h4>
+      <div class="label" id="green">
+        <h4>Streaming</h4>
+      </div>
+      <div class="label" id="yellow">
+        <h4>Sending Photos</h4>
+      </div>
+      <div class="label" id="red">
+        <h4>Basic Internet Usage</h4>
+      </div>
+      <div class="label" id="add-data">
+        <h4>Contribute</h4>
+      </div>
+      <br style="clear: left;" />
+    </div>
+    <div class="break"></div>
 
-    <div id="jobDiv"></div>
-    <img id="petImage"></img>
+    <div>
+      <div id="list-results">
+        <div class="list-result">
+          <div class="list-pic">
+            <img src="starbucks.jpg" alt="Starbucks"/>
+          </div>
+          <div class="list-result-info">
+            <h2 class="list-result-title">Starbucks</h2>
+            <p> average speed: <span class="green-speed">51.2 Mbps</span></p>
+          </div>
+          <br style="clear: both;" />
+        </div>
+        <br style="clear: left;" />
 
-    <hr/>
+        <div class="list-result">
+          <div class="list-pic">
+            <img src="geisel.jpg" alt="Geisel Library"/>
+          </div>
+          <div class="list-result-info">
+            <h2 class="list-result-title">Geisel Library</h2>
+            <p> average speed: <span class="green-speed">48.35 Mbps</span></p>
+          </div>
+          <br style="clear: both;" />
+        </div>
+        <br style="clear: left;" />
 
-    <div id="status"></div>
+        <div class="list-result">
+          <div class="list-pic">
+            <img src="commuter_lounge.jpg" alt="Commuter Lounge"/>
+          </div>
+          <div class="list-result-info">
+            <h2 class="list-result-title">Commuter Lounge</h2>
+            <p> average speed: <span class="yellow-speed">29.9 Mbps</span></p>
+          </div>
+          <br style="clear: both;" />
+        </div>
+        <br style="clear: left;" />
+
+        <div class="list-result">
+          <div class="list-pic">
+            <img src="center_hall.jpg" alt="Center Hall"/>
+          </div>
+          <div class="list-result-info">
+            <h2 class="list-result-title">Center Hall</h2>
+            <p> average speed: <span class="yellow-speed">28.6 Mbps</span></p>
+          </div>
+          <br style="clear: both;" />
+        </div>
+        <br style="clear: left;" />
+      </div>
+      <div id="map">
+        <img src="static_map.png" alt="UCSD Map"/>
+      </div>
+    </div>
+
+
     <script src="../scripts/petsapp.js"></script>
   </body>
 </html>

@@ -1,3 +1,94 @@
-/*h1 {
-	color: blue;
-}*/
+/* General */
+body {
+	/*font-family: Arial, Helvetica, sans-serif;*/
+	font-family: "Roboto", sans-serif;
+	/*padding: 0px;
+	margin: 0px;*/
+}
+
+.break {
+	height: 25px;
+}
+
+img {
+	max-width: 100%;
+}
+
+
+/* Button Section */
+.text-label {
+	padding-left: 15px;
+}
+
+.label {
+	float: left;
+    width: 150px;
+    border-radius: 10px;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 15px;
+    margin: 0px 15px 15px 15px;
+}
+
+#green {
+	background-color: green;
+}
+
+
+#yellow {
+	background-color: yellow;
+}
+
+#red {
+	background-color: red;
+}
+
+#add-data {
+	background-color: lightgrey;
+	float: right;
+}
+
+
+
+/* List Section */
+#list-results {
+	float: left;
+	width: 35%;
+	margin: 0px;
+}
+
+.list-result {
+	margin-bottom: 15px;
+}
+
+.list-pic {
+	width: 35%;
+	float: left;
+	margin-right: 5%;
+}
+
+.list-result-info {
+	width: 60%;
+	float: left;
+}
+
+.list-result-info h2 {
+	line-height: 10px;
+}
+
+.green-speed {
+	color: green;
+}
+
+.yellow-speed {
+	color: yellow;
+}
+
+/* Map Section */
+#map {
+	float: left;
+	width: 60%;
+	margin: 0px 30px 0px 0px;
+}
