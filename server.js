@@ -13,6 +13,7 @@
 
 const express = require('express');
 const app = express();
+const path = require('path');
 
 
 
@@ -42,13 +43,18 @@ const fakeDatabase = {
 // Express - basic routing: http://expressjs.com/en/starter/basic-routing.html
 // Express - routing: https://expressjs.com/en/guide/routing.html
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/static_files/home.html'));
+});
 
+// KEEPING THIS FOR REFERENCE FOR NOW
 app.get('/users', (req, res) => {
   const allUsernames = Object.keys(fakeDatabase); // returns a list of object keys
   console.log('allUsernames is:', allUsernames);
   res.send(allUsernames);
 });
 
+// KEEPING THIS FOR REFERENCE FOR NOW
 app.get('/users/:userid', (req, res) => {
   const nameToLookup = req.params.userid; // matches ':userid' above
   const val = fakeDatabase[nameToLookup];
