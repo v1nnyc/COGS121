@@ -1,0 +1,92 @@
+<html>
+  <head>
+  <title>Add Internet Speed</title>
+  <script src="jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="./style/style.css">
+  </head>
+
+  <style>
+  .popup {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .popup-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 70%;
+  }
+
+  .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+  </style>
+
+  <body>
+    <h1>Add Internet Speed</h1>
+    <hr>
+    <h4>Are you sure you want to use this information to our site? </h4>
+    <br>
+    <p>We will only record your internet speed, current location and the time this information was taken. </p>
+    <img src="recording.png" alt="Recording speed">
+    <p>Your contribution will help keep campus informed and on the fastest wifi UCSD has to offer!</p>
+
+    <button id="recordSpeed">Record Data Speed</button>
+    <button id="Cancel">Cancel</button>
+
+<div id="mypopup" class="popup">
+  <div class="popup-content">
+    <span class="close">&times;</span>
+    <p>Your internet speed and location has been recorded! Thank you :)</p>
+  </div>
+</div>
+
+
+    <div id="status"></div>
+    <script src="../scripts/addSpeed.js"></script>
+    <script type="text/javascript">
+    var popup = document.getElementById('mypopup');
+    // Get the button that opens the modal
+    var btn = document.getElementById("recordSpeed");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        popup.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        popup.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == popup) {
+            popup.style.display = "none";
+        }
+    }
+
+    </script>
+  </body>
+</html>

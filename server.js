@@ -18,7 +18,7 @@ const path = require('path');
 
 
 // put all of your static files (e.g., HTML, CSS, JS, JPG) in the static_files/
-// sub-directory, and the server will serve them from there. 
+// sub-directory, and the server will serve them from there.
 // Learn more: http://expressjs.com/en/starter/static-files.html
 
 app.use(express.static('static_files'));
@@ -45,6 +45,10 @@ const fakeDatabase = {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/static_files/home.html'));
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/static_files/addSpeed.html'));
 });
 
 // KEEPING THIS FOR REFERENCE FOR NOW
