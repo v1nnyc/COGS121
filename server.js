@@ -31,13 +31,13 @@ app.use(express.static('static_files'));
 // that they become persistent, but this fake database will be reset when
 // this script restarts. however, as long as the script is running, this
 // database can be modified at will.
-
-const fakeDatabase = {
-  'Philip': {job: 'professor', pet: 'cat.jpg'},
-  'John': {job: 'student',   pet: 'dog.jpg'},
-  'Carol': {job: 'engineer',  pet: 'bear.jpg'}
-};
-
+//
+// const fakeDatabase = {
+//   'Philip': {job: 'professor', pet: 'cat.jpg'},
+//   'John': {job: 'student',   pet: 'dog.jpg'},
+//   'Carol': {job: 'engineer',  pet: 'bear.jpg'}
+// };
+//
 
 // To learn more about server routing:
 // Express - Hello world: http://expressjs.com/en/starter/hello-world.html
@@ -52,24 +52,24 @@ app.get('/addSpeed', function (req, res) {
   res.sendFile(path.join(__dirname + '/static_files/addSpeed.html'));
 });
 
-// KEEPING THIS FOR REFERENCE FOR NOW
-app.get('/users', (req, res) => {
-  const allUsernames = Object.keys(fakeDatabase); // returns a list of object keys
-  console.log('allUsernames is:', allUsernames);
-  res.send(allUsernames);
-});
-
-// KEEPING THIS FOR REFERENCE FOR NOW
-app.get('/users/:userid', (req, res) => {
-  const nameToLookup = req.params.userid; // matches ':userid' above
-  const val = fakeDatabase[nameToLookup];
-  console.log(nameToLookup, '->', val); // for debugging
-  if (val) {
-    res.send(val);
-  } else {
-    res.send({}); // failed, so return an empty object instead of undefined
-  }
-});
+// // KEEPING THIS FOR REFERENCE FOR NOW
+// app.get('/users', (req, res) => {
+//   const allUsernames = Object.keys(fakeDatabase); // returns a list of object keys
+//   console.log('allUsernames is:', allUsernames);
+//   res.send(allUsernames);
+// });
+//
+// // KEEPING THIS FOR REFERENCE FOR NOW
+// app.get('/users/:userid', (req, res) => {
+//   const nameToLookup = req.params.userid; // matches ':userid' above
+//   const val = fakeDatabase[nameToLookup];
+//   console.log(nameToLookup, '->', val); // for debugging
+//   if (val) {
+//     res.send(val);
+//   } else {
+//     res.send({}); // failed, so return an empty object instead of undefined
+//   }
+// });
 
 
 
