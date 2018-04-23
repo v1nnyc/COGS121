@@ -1,44 +1,47 @@
-// jQuery convention for running when the document has been fully loaded:
+function createListElementFromObj(listObj) {
+  htmlString = '<div class="list-result">' +
+                  '<div class="list-pic">' +
+                    '<img src="' + listObj.img + '" alt="' + listObj.title + '"/>' +
+                  '</div>' +
+                  '<div class="list-result-info">' +
+                    '<h2 class="list-result-title">' + listObj.title + '</h2>' +
+                    '<p> average speed: <span class="green-speed">' + listObj.speed + '</span></p>' +
+                  '</div>' +
+                  '<br style="clear: both;" />' +
+                '</div>' +
+                '<br style="clear: left;" />';
+
+
+  var div = document.createElement('div');
+  div.innerHTML = htmlString.trim();
+
+  // Change this to div.childNodes to support multiple top-level nodes
+  return div.firstChild; 
+}
+
 $(document).ready(() => {
-  $('#readButton').click(() => {
-    const requestURL = 'users/' + $('#nameBox').val();
-    console.log('making ajax request to:', requestURL);
+  
+  console.log('making ajax request to: /getData');
 
-    // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-    // Using the core $.ajax() method since it's the most flexible.
-    // ($.get() and $.getJSON() are nicer convenience functions)
-    $.ajax({
-      // all URLs are relative to http://localhost:3000/
-      url: requestURL,
-      type: 'GET',
-      dataType : 'json', // this URL returns data in JSON format
-      success: (data) => {
-        console.log('You received some data!', data);
-
-        if (data.job && data.pet) {
-          $('#status').html('Successfully fetched data at URL: ' + requestURL);
-          $('#jobDiv').html('My job is ' + data.job);
-          $('#petImage').attr('src', data.pet).attr('width', '300px');
+  // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
+  // Using the core $.ajax() method since it's the most flexible.
+  // ($.get() and $.getJSON() are nicer convenience functions)
+  $.ajax({
+    // all URLs are relative to http://localhost:3000/
+    url: '/getListData',
+    type: 'GET',
+    dataType : 'json', // this URL returns data in JSON format
+    success: (data) => {
+      console.log('You received some data!', data);
+      for (var title in data) {
+        if (data) {
+          console.log("got data");
+          $('#list-results').append(createListElementFromObj(data[title]));
         } else {
-          $('#status').html('Error: could not find user at URL: ' + requestURL);
-          // clear the display
-          $('#jobDiv').html('');
-          $('#petImage').attr('src', '').attr('width', '0px');
+          console.log('Failed to get list data!');
         }
-      },
-    });
-  });
-
-  $('#allUsersButton').click(() => {
-    $.ajax({
-      url: 'users/',
-      type: 'GET',
-      dataType : 'json',
-      success: (data) => {
-        console.log('You received some data!', data);
-        $('#status').html('All users: ' + data);
-      },
-    });
+      }
+    },
   });
 
   // define a generic Ajax error handler:

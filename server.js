@@ -37,7 +37,14 @@ app.use(express.static('static_files'));
 //   'John': {job: 'student',   pet: 'dog.jpg'},
 //   'Carol': {job: 'engineer',  pet: 'bear.jpg'}
 // };
-//
+
+
+const fakeListDatabase = {
+  'Starbucks': {title:'Starbucks', img: 'starbucks.jpg', speed: '51.2 Mbsp'},
+  'Geisel Library': {title:'Geisel Library', img: 'geisel.jpg', speed: '48.62 Mbsp'},
+  'Center Hall': {title:'Center Hall', img: 'center_hall.jpg', speed: '29.9 Mbsp'},
+  'Commuter Lounge': {title:'Commuter Lounge', img: 'commuter_lounge.jpg', speed: '17.3 Mbsp'},
+};
 
 // To learn more about server routing:
 // Express - Hello world: http://expressjs.com/en/starter/hello-world.html
@@ -50,6 +57,11 @@ app.get('/', (req, res) => {
 
 app.get('/addSpeed', function (req, res) {
   res.sendFile(path.join(__dirname + '/static_files/addSpeed.html'));
+});
+
+app.get('/getListData', function(req, res) {
+  console.log('sending list data: ', fakeListDatabase);
+  res.send(fakeListDatabase);
 });
 
 // // KEEPING THIS FOR REFERENCE FOR NOW
