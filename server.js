@@ -14,7 +14,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-
+// const home = require('./static_files/home.html');
+// const addSpeed = require('./static_files/addSpeed.html');
 
 
 // put all of your static files (e.g., HTML, CSS, JS, JPG) in the static_files/
@@ -47,7 +48,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/static_files/home.html'));
 });
 
-app.get('/', (req, res) => {
+app.get('/addSpeed', function (req, res) {
   res.sendFile(path.join(__dirname + '/static_files/addSpeed.html'));
 });
 
