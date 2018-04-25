@@ -16,11 +16,11 @@ function createListElementFromObj(listObj) {
   div.innerHTML = htmlString.trim();
 
   // Change this to div.childNodes to support multiple top-level nodes
-  return div.firstChild; 
+  return div.firstChild;
 }
 
 $(document).ready(() => {
-  
+
   console.log('making ajax request to: /getData');
 
   // From: http://learn.jquery.com/ajax/jquery-ajax-methods/

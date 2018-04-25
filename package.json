@@ -12,6 +12,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "ajax": "0.0.4",
     "ejs": "^2.5.9",
     "express": "3.x",
     "express3-handlebars": "*",

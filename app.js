@@ -15,6 +15,8 @@ const path = require('path');
 const app = express();
 var handlebars = require('express3-handlebars')
 
+
+
 // our routes
 const home = require('./routes/home');
 const addSpeed = require('./routes/addSpeed')
@@ -43,6 +45,27 @@ app.use(app.router);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+// To learn more about server routing:
+// Express - Hello world: http://expressjs.com/en/starter/hello-world.html
+// Express - basic routing: http://expressjs.com/en/starter/basic-routing.html
+// Express - routing: https://expressjs.com/en/guide/routing.html
+
+app.get('/', home.view);
+
+app.get('/addSpeed', addSpeed.view);
+
+app.get('/titlePage', titlePage.view);
+
+//will print out database to console (transfered from previous repo)
+app.get('/getListData', function(req, res) {
+  console.log('sending list data: ', fakeListDatabase);
+  res.send(fakeListDatabase);
+});
+
+
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -66,23 +89,6 @@ const fakeListDatabase = {
   'Center Hall': {title:'Center Hall', img: 'images/center_hall.jpg', speed: '29.9 Mbsp'},
   'Commuter Lounge': {title:'Commuter Lounge', img: 'images/commuter_lounge.jpg', speed: '17.3 Mbsp'},
 };
-
-// To learn more about server routing:
-// Express - Hello world: http://expressjs.com/en/starter/hello-world.html
-// Express - basic routing: http://expressjs.com/en/starter/basic-routing.html
-// Express - routing: https://expressjs.com/en/guide/routing.html
-
-app.get('/', home.view);
-
-app.get('/addSpeed', addSpeed.view);
-
-app.get('/titlePage', titlePage.view);
-
-//will print out database to console (transfered from previous repo)
-app.get('/getListData', function(req, res) {
-  console.log('sending list data: ', fakeListDatabase);
-  res.send(fakeListDatabase);
-});
 
 // // KEEPING THIS FOR REFERENCE FOR NOW
 // app.get('/users', (req, res) => {
