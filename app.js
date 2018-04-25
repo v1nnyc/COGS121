@@ -7,7 +7,7 @@
 // To start the server, run:
 //   node server.js
 //
-// and open the frontend webpage at http://localhost:3000/petsapp.html
+// and open the frontend webpage at http://localhost:3000/
 
 var express = require('express');
 var http = require('http');
