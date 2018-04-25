@@ -16,8 +16,9 @@ const app = express();
 var handlebars = require('express3-handlebars')
 
 // our routes
-var home = require('./routes/home');
-var addSpeed = require('./routes/addSpeed')
+const home = require('./routes/home');
+const addSpeed = require('./routes/addSpeed')
+const titlePage = require('./routes/titlePage');
 
 
 
@@ -74,6 +75,8 @@ const fakeListDatabase = {
 app.get('/', home.view);
 
 app.get('/addSpeed', addSpeed.view);
+
+app.get('/titlePage', titlePage.view);
 
 //will print out database to console (transfered from previous repo)
 app.get('/getListData', function(req, res) {
