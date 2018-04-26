@@ -21,7 +21,7 @@ function createListElementFromObj(listObj) {
 
 $(document).ready(() => {
 
-  console.log('making ajax request to: /getData');
+  console.log('making ajax request to: /getListData');
 
   // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
   // Using the core $.ajax() method since it's the most flexible.
@@ -34,12 +34,7 @@ $(document).ready(() => {
     success: (data) => {
       console.log('You received some data!', data);
       for (var title in data) {
-        if (data) {
-          console.log("got data");
-          $('#list-results').append(createListElementFromObj(data[title]));
-        } else {
-          console.log('Failed to get list data!');
-        }
+        $('#list-results').append(createListElementFromObj(data[title]));
       }
     },
   });
