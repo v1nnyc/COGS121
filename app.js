@@ -65,6 +65,12 @@ app.get('/getListData', function(req, res) {
   res.send(fakeListDatabase);
 });
 
+// Sends map marker data
+app.get('/getMapData', function(req, res) {
+  console.log('sending map data: ', fakeMapDatabase);
+  res.send(fakeMapDatabase);
+});
+
 
 
 // this fake database will be reset when this script restarts. 
@@ -76,6 +82,25 @@ const fakeListDatabase = {
   'Center Hall': {title:'Center Hall', img: 'images/center_hall.jpg', speed: '29.9 Mbsp'},
   'Commuter Lounge': {title:'Commuter Lounge', img: 'images/commuter_lounge.jpg', speed: '17.3 Mbsp'},
 };
+
+
+// TODO: make the color category depend on the speed
+// TODO: add other fields we want to store (speed, date and time, network) 
+const fakeMapDatabase = [
+  {
+    position: {lat: 32.88121, lng: -117.237449},
+	color: 'green'
+  }, {
+	position: {lat: 32.880097, lng: -117.236431},
+	color: 'yellow'
+  }, {
+	position: {lat: 32.880984, lng: -117.237821},
+	color: 'red'
+  }, {
+	position: {lat: 32.879323, lng: -117.237261},
+	color: 'red'
+  }
+];
 
 
 app.listen(app.get('port'), () => {

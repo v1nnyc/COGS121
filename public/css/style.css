@@ -94,5 +94,6 @@ a {
 #map {
 	float: left;
 	width: 60%;
+	height: 500px;
 	margin: 0px 30px 0px 0px;
 }
