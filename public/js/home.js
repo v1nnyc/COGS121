@@ -1,23 +1,16 @@
 $(document).ready(() => {
   console.log("home document is ready");
-  $.ajax({
-    url: '/getplaces',
-    type: 'GET',
-    dataType: 'json',
-    success: (data) => {
-      console.log("you received some data!", data);
-
-      data.forEach(rows => {
-        //require an image and a speed to add
-        if(rows.image && rows.speed){
-          //creating new object
-          let obj = {title: rows.name, img: rows.image, speed: rows.speed};
-          $('#list-results').append(createListElementFromObj(obj));
-        }
-      });
-    }
-  })
-});
+  // create internet speed markers
+  doAjaxGet('/getplaces', (data) => {
+    data.forEach(rows => {
+      //require an image and a speed to add
+      if(rows.image && rows.speed){
+        //creating new object
+        let obj = {title: rows.name, img: rows.image, speed: rows.speed};
+        $('#list-results').append(createListElementFromObj(obj));
+      }
+    });
+  });
 
 //old implementation w/o database
 /*$(document).ready(() => {
@@ -67,8 +60,7 @@ function initMap() {
       map: map
     });
   });
-
-
+  
   // create internet speed markers
   doAjaxGet('/getnetworks', (marker_features) => {
     marker_features.forEach(function(feature) {
