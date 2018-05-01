@@ -1,7 +1,7 @@
 $(document).ready(() => {
 
   // fill list results
-  makeAjaxCall('/getListData', (list_results) => {
+  doAjaxGet('/getListData', (list_results) => {
     for (var title in list_results) {
       $('#list-results').append(createListElementFromObj(list_results[title]));
     }
@@ -9,8 +9,12 @@ $(document).ready(() => {
 
 });
 
+
+// This function gets called when Google maps API finishes checking our API key
+// (passed in through the script tag in home.html)
 function initMap() {
-  const uluru = {lat: 32.881214, lng: -117.237449};
+  // center around the location of Geisel 
+  const uluru = {lat: 32.881214, lng: -117.237449}; 
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: uluru
@@ -22,8 +26,18 @@ function initMap() {
     green: {icon: 'images/green-marker.png'}
   };
 
-  // create markers
-  makeAjaxCall('/getMapData', (marker_features) => {
+  // add current location marker if current location is available
+  checkForCurrentLocation((position) => {
+    const marker = new google.maps.Marker({
+      position: {lat: position.coords.latitude, lng: position.coords.longitude},
+      icon: "images/current-location.png",
+      map: map
+    });
+  });
+  
+
+  // create internet speed markers
+  doAjaxGet('/getMapData', (marker_features) => {
     marker_features.forEach(function(feature) {
       const marker = new google.maps.Marker({
         position: feature.position,
@@ -54,25 +68,3 @@ function createListElementFromObj(listObj) {
   // Change this to div.childNodes to support multiple top-level nodes
   return div.firstChild;
 }
-
-// From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-// Using the core $.ajax() method since it's the most flexible.
-// ($.get() and $.getJSON() are nicer convenience functions)
-function makeAjaxCall(url, callbackFunc) {
-  $.ajax({
-    url: url,
-    type: 'GET',
-    dataType : 'json', 
-    success: (data) => {
-      console.log('You received some data!', data);
-      callbackFunc(data);
-    },
-  });
-}
-
-// define a generic Ajax error handler:
-// http://api.jquery.com/ajaxerror/
-$(document).ajaxError(() => {
-  $('#status').html('Error: unknown ajaxError!');
-});
-
