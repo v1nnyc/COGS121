@@ -54,6 +54,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Express - routing: https://expressjs.com/en/guide/routing.html
 
 app.get('/', home.view);
+app.get('/getplaces', home.places);
+app.get('/getnetworks', home.networks);
 
 app.get('/addSpeed', addSpeed.view);
 
@@ -73,20 +75,20 @@ app.get('/getMapData', function(req, res) {
 
 
 
-// this fake database will be reset when this script restarts. 
+// this fake database will be reset when this script restarts.
 // however, as long as the script is running, this database can be modified at will.
 
-const fakeListDatabase = {
+/*const fakeListDatabase = {
   'Starbucks': {title:'Starbucks', img: 'images/starbucks.jpg', speed: '51.2 Mbsp'},
   'Geisel Library': {title:'Geisel Library', img: 'images/geisel.jpg', speed: '48.62 Mbsp'},
   'Center Hall': {title:'Center Hall', img: 'images/center_hall.jpg', speed: '29.9 Mbsp'},
   'Commuter Lounge': {title:'Commuter Lounge', img: 'images/commuter_lounge.jpg', speed: '17.3 Mbsp'},
-};
+};*/
 
-
+//old implementation
 // TODO: make the color category depend on the speed
-// TODO: add other fields we want to store (speed, date and time, network) 
-const fakeMapDatabase = [
+// TODO: add other fields we want to store (speed, date and time, network)
+/*const fakeMapDatabase = [
   {
     position: {lat: 32.88121, lng: -117.237449},
 	color: 'green'
@@ -100,7 +102,7 @@ const fakeMapDatabase = [
 	position: {lat: 32.879323, lng: -117.237261},
 	color: 'red'
   }
-];
+];*/
 
 
 app.listen(app.get('port'), () => {

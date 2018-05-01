@@ -16,10 +16,10 @@ markers.serialize(() => {
   markers.run("CREATE TABLE networks (lat FLOAT, lng FLOAT, speed FLOAT, date DATE)");
   markers.run("CREATE TABLE places (lat FLOAT, lng FLOAT, name TEXT, image TEXT, speed FLOAT)");
 
-  markers.run("INSERT INTO networks VALUES('32.88121', '-117.237449', '1.0', '0')");
-  markers.run("INSERT INTO networks VALUES('32.880097', '-117.236431', '1.0', '0')");
-  markers.run("INSERT INTO networks VALUES('32.880984', '-117.237821', '1.0', '0')");
-  markers.run("INSERT INTO networks VALUES('32.879323', '-117.237261', '1.0', '0')");
+  markers.run("INSERT INTO networks VALUES('32.88121', '-117.237449', '75.11', '0')");
+  markers.run("INSERT INTO networks VALUES('32.880097', '-117.236431', '10.34', '0')");
+  markers.run("INSERT INTO networks VALUES('32.880984', '-117.237821', '36.12', '0')");
+  markers.run("INSERT INTO networks VALUES('32.879323', '-117.237261', '4.5', '0')");
 
   markers.run("INSERT INTO places VALUES('32.880236',  '-117.236392', 'Starbucks', 'images/starbucks.jpg','51.2')");
   markers.run("INSERT INTO places VALUES('32.881130',  '-117.237556', 'Geisel Library', 'images/geisel.jpg','48.62')");
