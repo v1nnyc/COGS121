@@ -11,6 +11,7 @@ $(document).ready(() => {
       }
     });
   });
+});
 
 //old implementation w/o database
 /*$(document).ready(() => {
@@ -30,13 +31,9 @@ $(document).ready(() => {
 function initMap() {
 
   function calcColor(x){
-    if(x < 5){
-      return 'red';
-    } else if(x < 25){
-      return 'yellow';
-    } else {
-      return 'green';
-    }
+    if(x < 5) return 'red';
+    else if(x < 25) return 'yellow';
+    else return 'green';
   }
 
   // center around the location of Geisel
@@ -60,7 +57,7 @@ function initMap() {
       map: map
     });
   });
-  
+
   // create internet speed markers
   doAjaxGet('/getnetworks', (marker_features) => {
     marker_features.forEach(function(feature) {
