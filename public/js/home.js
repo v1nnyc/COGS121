@@ -1,5 +1,20 @@
 $(document).ready(() => {
+  console.log("home document is ready");
+  // create internet speed markers
+  doAjaxGet('/getplaces', (data) => {
+    data.forEach(rows => {
+      //require an image and a speed to add
+      if(rows.image && rows.speed){
+        //creating new object
+        let obj = {title: rows.name, img: rows.image, speed: rows.speed};
+        $('#list-results').append(createListElementFromObj(obj));
+      }
+    });
+  });
+});
 
+//old implementation w/o database
+/*$(document).ready(() => {
   // fill list results
   doAjaxGet('/getListData', (list_results) => {
     for (var title in list_results) {
@@ -7,14 +22,22 @@ $(document).ready(() => {
     }
   });
 
-});
+});*/
 
 
 // This function gets called when Google maps API finishes checking our API key
 // (passed in through the script tag in home.html)
+
 function initMap() {
-  // center around the location of Geisel 
-  const uluru = {lat: 32.881214, lng: -117.237449}; 
+
+  function calcColor(x){
+    if(x < 5) return 'red';
+    else if(x < 25) return 'yellow';
+    else return 'green';
+  }
+
+  // center around the location of Geisel
+  const uluru = {lat: 32.881214, lng: -117.237449};
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: uluru
@@ -34,16 +57,17 @@ function initMap() {
       map: map
     });
   });
-  
 
   // create internet speed markers
-  doAjaxGet('/getMapData', (marker_features) => {
+  doAjaxGet('/getnetworks', (marker_features) => {
     marker_features.forEach(function(feature) {
-      const marker = new google.maps.Marker({
-        position: feature.position,
-        icon: icons[feature.color].icon,
-        map: map
-      });
+      if(feature.lat && feature.lng && feature.speed){
+        const marker = new google.maps.Marker({
+          position: {lat: feature.lat, lng: feature.lng},
+          icon: icons[calcColor(feature.speed)].icon,
+          map: map
+        });
+      }
     });
   });
 
