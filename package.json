@@ -19,6 +19,7 @@
     "jquery": "^3.3.1",
     "mongodb": "*",
     "mongoose": "*",
+    "sqlite3": "^4.0.0",
     "nodemon": "^1.17.3"
   },
   "engines": {
