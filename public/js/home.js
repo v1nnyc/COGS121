@@ -1,40 +1,24 @@
 $(document).ready(() => {
-  console.log("home document is ready");
-  // create internet speed markers
+  // fill list results
   doAjaxGet('/getplaces', (data) => {
-    data.forEach(rows => {
+    data.forEach(place => {
       //require an image and a speed to add
-      if(rows.image && rows.speed){
+      if(place.image && place.speed){
         //creating new object
-        let obj = {title: rows.name, img: rows.image, speed: rows.speed};
+        const obj = {title: place.name, 
+                    img: place.image, 
+                    speed: place.speed,
+                    color: calcColor(place.speed)};
         $('#list-results').append(createListElementFromObj(obj));
       }
     });
   });
 });
 
-//old implementation w/o database
-/*$(document).ready(() => {
-  // fill list results
-  doAjaxGet('/getListData', (list_results) => {
-    for (var title in list_results) {
-      $('#list-results').append(createListElementFromObj(list_results[title]));
-    }
-  });
-
-});*/
-
 
 // This function gets called when Google maps API finishes checking our API key
 // (passed in through the script tag in home.html)
-
 function initMap() {
-
-  function calcColor(x){
-    if(x < 5) return 'red';
-    else if(x < 25) return 'yellow';
-    else return 'green';
-  }
 
   // center around the location of Geisel
   const uluru = {lat: 32.881214, lng: -117.237449};
@@ -73,6 +57,12 @@ function initMap() {
 
 }
 
+function calcColor(x){
+  if(x < 5) return 'red';
+  else if(x < 25) return 'yellow';
+  else return 'green';
+}
+
 
 function createListElementFromObj(listObj) {
   htmlString = '<div class="list-result">' +
@@ -81,14 +71,12 @@ function createListElementFromObj(listObj) {
                   '</div>' +
                   '<div class="list-result-info">' +
                     '<h2 class="list-result-title">' + listObj.title + '</h2>' +
-                    '<p> average speed: <span class="green-speed">' + listObj.speed + '</span></p>' +
+                    '<p> average speed: <span class="' + listObj.color + '-speed">' + listObj.speed + '</span> Mbps</p>' +
                   '</div>' +
                   '<br style="clear: both;" />' +
                 '</div>' +
                 '<br style="clear: left;" />';
   var div = document.createElement('div');
   div.innerHTML = htmlString.trim();
-
-  // Change this to div.childNodes to support multiple top-level nodes
   return div.firstChild;
 }
