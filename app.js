@@ -50,12 +50,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Express - basic routing: http://expressjs.com/en/starter/basic-routing.html
 // Express - routing: https://expressjs.com/en/guide/routing.html
 
-app.get('/', home.view);
+app.get('/', titlePage.view);
+app.get('/home', home.view);
 app.get('/getplaces', home.places);
 app.get('/getnetworks', home.networks);
-
-app.post('/add', addSpeed.add);
-
+// app.post('/add', addSpeed.add);
 app.get('/titlePage', titlePage.view);
 
 
