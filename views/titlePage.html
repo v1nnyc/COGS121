@@ -12,21 +12,9 @@
         <div class="col-sm-6">
           <h1 class="jumbotron-heading">UC San Diego WiFi Map</h1>
           <p >By clicking "Discover WiFi Spots Near Me," you are agreeing to share your location data with UC San Diego WiFi Map. We will only use your location data to display relevant results and will not collect any other information without your explicit consent.</p>
-          <button type="button" id="view" class="btn btn-primary contact">View WiFi Map</button>
+          <a href="/home"><button id="view" class="btn btn-primary contact">View WiFi Map</button></a>
         </div>
       </div>
     </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(() => {
-      console.log('ready!');
-
-        $('#view').click(() => {
-        console.log('clicked on view button!');
-        window.location.replace('/home');
-        return false;
-      });
-    });
-  </script>
   </body>
 </html>
