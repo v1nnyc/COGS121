@@ -1,5 +1,5 @@
 // Call successFunction, passing in the current location, if we're able to get current location.
-function checkForCurrentLocation(successFunction) {
+function checkForCurrentLocation(successFunction, failureFunction) {
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log("Got position data: Lat = " + position.coords.latitude + 
@@ -7,8 +7,8 @@ function checkForCurrentLocation(successFunction) {
         successFunction(position);
       });
   } else {
-        // Can change this to call a failure function if necessary.
         console.log("Failed to get current location information.");
+        failureFunction();
   }
 }
 
@@ -23,6 +23,19 @@ function doAjaxGet(url, callbackFunc) {
     success: (data) => {
       console.log('You received some data!', data);
       callbackFunc(data);
+    },
+  });
+}
+
+function doAjaxPost(url, data, callbackFunc) {
+  $.ajax({
+    url: url,
+    type: 'POST',
+    dataType : 'json',
+    data: data, 
+    success: (response) => {
+      console.log('You received some data!', response);
+      callbackFunc(response);
     },
   });
 }

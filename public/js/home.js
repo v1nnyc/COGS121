@@ -14,15 +14,17 @@ $(document).ready(() => {
     });
   });
 
-  // When the user clicks contribute, open popup
+  // When the user clicks contribute, open add speed popup
   $('#contribute').click(() => { 
-      $('#popup-container').show();
+      $('#add-speed-container').show();
   });
 
   // When the user clicks on the 'x' or on cancel, close popup
-  $('#close-popup, #cancel').click(() => {
-      $('#popup-container').hide();
+  $('.close-popup, .cancel').click(() => {
+      $('.popup-container').hide();
   });
+
+  $('#add-speed').click(addSpeed);
 
 });
 
@@ -68,10 +70,55 @@ function initMap() {
 
 }
 
-function calcColor(x){
+
+function calcColor(x) {
   if(x < 5) return 'red';
   else if(x < 25) return 'yellow';
   else return 'green';
+}
+
+
+// Attempts to add the user's current location and internet speed to database
+function addSpeed() {
+  // TODO: use a more robust method for getting internet speed
+  if (navigator.connection) {
+    checkForCurrentLocation(
+      //call this fuction if get location successfully
+      (position) => {
+        const data = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude, 
+          speed: navigator.connection.downlink
+        };
+
+        doAjaxPost('/add', data, (response) => {
+          console.log('in callback');
+          giveConfirmation(response.success, '');
+        });
+      },
+      // call this function if failed to get location
+      () => {
+        giveConfirmation(false, 'Unable to retrieve your location.')
+      });
+  } else {
+    // call this function if we can't get internet speed from browser
+    giveConfirmation(false, 'This is not supported by your browser, please use Chrome.');
+  }
+    
+}
+
+
+// closes the add speed popup, opens the confirmation popup and populates text accordingly
+function giveConfirmation(successful, errorMessage) {
+  $('#add-speed-container').hide();
+  $('#confirmation-container').show();
+  if (successful) {
+    $('#confirmation-title').text('Success!');
+    $('#confirmation-text').text('You data has been added to our map. Thank you for your help!');
+  } else {
+    $('#confirmation-title').text('Failed to add your internet speed');
+    $('#confirmation-text').text('Error: ' + errorMessage);
+  }
 }
 
 
