@@ -5,8 +5,8 @@ $(document).ready(() => {
       //require an image and a speed to add
       if(place.image && place.speed){
         //creating new object
-        const obj = {title: place.name, 
-                    img: place.image, 
+        const obj = {title: place.name,
+                    img: place.image,
                     speed: place.speed,
                     color: calcColor(place.speed)};
         $('#list-results').append(createListElementFromObj(obj));
@@ -80,3 +80,40 @@ function createListElementFromObj(listObj) {
   div.innerHTML = htmlString.trim();
   return div.firstChild;
 }
+
+
+// Get the speed
+var speed = document.getElementById('mySpeed');
+// Get the button that opens the popup
+var btn = document.getElementById("Contribute");
+// Get the <span> element that closes the popup
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the popup
+var cancel=document.getElementById("cancel");
+var record=document.getElementById("recordSpeed");
+
+btn.onclick = function() {
+    speed.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    speed.style.display = "none";
+}
+cancel.onclick = function() {
+    speed.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == speed) {
+        speed.style.display = "none";
+    }
+}
+record.onclick = function(){
+
+}
+
+// $('#Contribute').click(()=>{
+//   $("#popupdiv").load('http://localhost:3000/addSpeed').dialog({modal:true});
+// });
