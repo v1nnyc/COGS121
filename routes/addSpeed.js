@@ -3,11 +3,6 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('markers.db');
 
 
-// GET addSpeed page
-exports.view = function(req, res) {
-  res.render('addSpeed');
-};
-
 // add a speed to the database
 // TODO: this method should also update any entries in the places
 // table which are close enough to this location by adding it into 

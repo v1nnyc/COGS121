@@ -2,7 +2,6 @@
   <head>
   <title>UCSD wifi</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/home.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
 
@@ -21,30 +20,28 @@
       <div class="label" id="red">
         <h4>Basic Internet Usage</h4>
       </div>
-      <div class="label" id="add-data">
-        <button type="button" id="Contribute">Contribute</button>
-
-        <div class="speed" id="mySpeed">
-          <div class="speed-popup">
-            <span class="close">&times;</span>
-            <h3 style="text-align: center;">Add Internet Speed</h3>
-            <h4 style="text-align: center;">Are you sure you want to share this information with our site? </h4>
-            <p style="text-align: center;">We will only record your internet speed, current location and the time this information was taken. </p>
-            <img src="images/recording.png" alt="Recording speed" style="width:50%; margin:auto;">
-            <p style="text-align: center;">Your contribution will help keep campus informed and on the fastest wifi UCSD has to offer!</p>
-            <button style="margin: auto;" type="button" id="recordSpeed">Record Data Speed</button>
-            <button style="margin: auto;" type="button" id="cancel">Cancel</button>
-          </div>
-        </div>
+      <div class="label" id="contribute">
+        <h4>Contribute</h4>
       </div>
       <br style="clear: left;" />
     </div>
     <div class="break"></div>
 
     <div>
-      <div id="list-results">
-      </div>
-      <div id="map">
+      <div id="list-results"></div>
+      <div id="map"></div>
+    </div>
+
+    <div id="popup-container">
+      <div id="speed-popup">
+        <span id="close-popup">&times;</span>
+        <h3>Add Internet Speed</h3>
+        <h4>Are you sure you want to share this information with our site? </h4>
+        <p>We will only record your internet speed, current location and the time this information was taken. </p>
+        <img id="record-speed-img" src="images/recording.png" alt="Recording speed">
+        <p>Your contribution will help keep campus informed and on the fastest wifi UCSD has to offer!</p>
+        <button id="recordSpeed">Record Data Speed</button>
+        <button id="cancel">Cancel</button>
       </div>
     </div>
 

@@ -54,7 +54,6 @@ app.get('/', home.view);
 app.get('/getplaces', home.places);
 app.get('/getnetworks', home.networks);
 
-app.get('/addSpeed', addSpeed.view);
 app.post('/add', addSpeed.add);
 
 app.get('/titlePage', titlePage.view);
