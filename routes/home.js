@@ -10,11 +10,10 @@ exports.view = function(req, res){
   res.render('home');
 };
 
-exports.places = function(req, res){
+exports.markers = function(req, res){
   // db.all() fetches all results from an SQL query into the 'rows' variable:
-  console.log("in places get function");
   db.all(
-    'SELECT * FROM places',
+    'SELECT * FROM markers',
     // callback function to run when the query finishes:
     (err, rows) => {
       console.log(rows);
@@ -27,11 +26,9 @@ exports.places = function(req, res){
   );
 };
 
-exports.networks = function(req, res){
-  // db.all() fetches all results from an SQL query into the 'rows' variable:
-  console.log("in networks get function");
+exports.dots = function(req, res){
   db.all(
-    'SELECT * FROM networks',
+    'SELECT * FROM dots',
     // callback function to run when the query finishes:
     (err, rows) => {
       console.log(rows);

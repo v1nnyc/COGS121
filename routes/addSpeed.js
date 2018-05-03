@@ -3,8 +3,8 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('markers.db');
 
 
-// add a speed to the database
-// TODO: this method should also update any entries in the places
+// add a speed to the dots table
+// TODO: this method should (maybe) also update any entries in the markers
 // table which are close enough to this location by adding it into 
 // that place's average speed
 exports.add = function(req, res) {
@@ -12,7 +12,7 @@ exports.add = function(req, res) {
   const sqllite_date = date.toISOString();
 
   db.run(
-    'INSERT INTO networks VALUES ($lat, $lng, $speed, $date)',
+    'INSERT INTO dots VALUES ($lat, $lng, $speed, $date)',
     // parameters to SQL query:
     {
       $lat: req.body.lat,

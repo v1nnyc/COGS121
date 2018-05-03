@@ -1,6 +1,6 @@
 $(document).ready(() => {
   // fill list results
-  doAjaxGet('/getplaces', (data) => {
+  doAjaxGet('/getMarkers', (data) => {
     data.forEach(place => {
       //require an image and a speed to add
       if(place.image && place.speed){
@@ -55,9 +55,9 @@ function initMap() {
     });
   });
 
-  // create internet speed markers
-  doAjaxGet('/getnetworks', (marker_features) => {
-    marker_features.forEach(function(feature) {
+  // create internet speed dots on map
+  doAjaxGet('/getDots', (dots) => {
+    dots.forEach(function(feature) {
       if(feature.lat && feature.lng && feature.speed){
         const marker = new google.maps.Marker({
           position: {lat: feature.lat, lng: feature.lng},

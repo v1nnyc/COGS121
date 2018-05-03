@@ -52,8 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', titlePage.view);
 app.get('/home', home.view);
-app.get('/getplaces', home.places);
-app.get('/getnetworks', home.networks);
+app.get('/getMarkers', home.markers);
+app.get('/getDots', home.dots);
 app.post('/add', addSpeed.add);
 app.get('/titlePage', titlePage.view);
 
