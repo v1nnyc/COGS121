@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Add Internet Speed</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/addSpeed.css">
+</head>
+
+<body>
+  <h1>Add Internet Speed</h1>
+  <hr>
+  <h4>Are you sure you want to share this information with our site? </h4>
+  <p>We will only record your internet speed, current location and the time this information was taken. </p>
+  <img src="images/recording.png" alt="Recording speed" style="width:50%;">
+  <p>Your contribution will help keep campus informed and on the fastest wifi UCSD has to offer!</p>
+
+  <button id="recordSpeed">Record Data Speed</button>
+  <a href="/"><button id="Cancel">Cancel</button></a>
+
+
+  <div id="mypopup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <p>Your internet speed and location has been recorded! Thank you :)</p>
+    </div>
+  </div>
+
+
+  <div id="status"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/addSpeed.js"></script>
+  <script type="text/javascript">
+  var popup = document.getElementById('mypopup');
+  var btn = document.getElementById("recordSpeed");
+  var span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function() {
+    popup.style.display = "block";
+  }
+  span.onclick = function() {
+    popup.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == popup) {
+      popup.style.display = "none";
+    }
+  }
+
+  </script>
+</body>
+</html>
