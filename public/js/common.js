@@ -1,14 +1,24 @@
 // Call successFunction, passing in the current location, if we're able to get current location.
 function checkForCurrentLocation(successFunction, failureFunction) {
-  if (navigator.geolocation) {
+  const lat = window.localStorage.getItem("latitude");
+  const lng = window.localStorage.getItem("longitude");
+  if (lat && lng) {
+    successFunction({latitude: parseFloat(lat), longitude: parseFloat(lng)});
+  }
+  else {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log("Got position data: Lat = " + position.coords.latitude + 
                     ", Lng = " + position.coords.longitude);
-        successFunction(position);
+        window.localStorage.setItem("latitude", position.coords.latitude);
+        window.localStorage.setItem("longitude", position.coords.longitude);
+        successFunction({latitude: position.coords.latitude, 
+                        longitude: position.coords.longitude});
       });
-  } else {
-        console.log("Failed to get current location information.");
-        failureFunction();
+    } else {
+      console.log("Failed to get current location information.");
+      failureFunction();
+    }
   }
 }
 

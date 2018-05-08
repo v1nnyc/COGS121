@@ -49,7 +49,7 @@ function initMap() {
   // add current location marker if current location is available
   checkForCurrentLocation((position) => {
     const marker = new google.maps.Marker({
-      position: {lat: position.coords.latitude, lng: position.coords.longitude},
+      position: {lat: position.latitude, lng: position.longitude},
       icon: "images/current-location.png",
       map: map
     });
@@ -86,8 +86,8 @@ function addSpeed() {
       //call this fuction if get location successfully
       (position) => {
         const data = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude, 
+          lat: position.latitude,
+          lng: position.longitude, 
           speed: navigator.connection.downlink
         };
 
