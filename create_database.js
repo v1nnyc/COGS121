@@ -9,7 +9,7 @@ const db = new sqlite3.Database('markers.db');
 
 db.serialize(() => {
   db.run("CREATE TABLE dots (lat FLOAT, lng FLOAT, speed FLOAT, date DATE)");
-  db.run("CREATE TABLE markers (lat FLOAT, lng FLOAT, name TEXT, image TEXT, speed FLOAT, dots INT, radius INT)");
+  db.run("CREATE TABLE markers (lat FLOAT, lng FLOAT, name TEXT, image TEXT, speed FLOAT, dots INT, radius FLOAT)");
 
   db.run("INSERT INTO dots VALUES('32.88121', '-117.237449', '75.11', '0')");
   db.run("INSERT INTO dots VALUES('32.880097', '-117.236431', '10.34', '0')");
