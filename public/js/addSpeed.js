@@ -6,8 +6,8 @@ function addSpeed() {
       //call this fuction if get location successfully
       (position) => {
         const data = {
-          lat: position.latitude,
-          lng: position.longitude, 
+          lat: position.lat,
+          lng: position.lng, 
           speed: navigator.connection.downlink
         };
 

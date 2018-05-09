@@ -1,32 +1,24 @@
-// Call successFunction, passing in the current location, if we're able to get current location.
+// Call successFunction, passing in the current location,
+// if we're able to get current location.
 function checkForCurrentLocation(successFunction, failureFunction) {
-  const lat = window.localStorage.getItem("latitude");
-  const lng = window.localStorage.getItem("longitude");
-  if (lat && lng) {
-    successFunction({latitude: parseFloat(lat), longitude: parseFloat(lng)});
-  }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log("Got position data: Lat = " + position.coords.latitude + 
+                    ", Lng = " + position.coords.longitude);
+        successFunction({lat: position.coords.latitude, 
+                        lng: position.coords.longitude});
+      }, 
+      // This function will be called if permission is denied.
+      (error) => {
+        console.log("Failed to get current location information.");
+        failureFunction();
+    });
+  } 
+  // this will be called if the browser doesn't support geolocation
   else {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log("Got position data: Lat = " + position.coords.latitude + 
-                      ", Lng = " + position.coords.longitude);
-          window.localStorage.setItem("latitude", position.coords.latitude);
-          window.localStorage.setItem("longitude", position.coords.longitude);
-          successFunction({latitude: position.coords.latitude, 
-                          longitude: position.coords.longitude});
-        }, 
-        // This function will be called if permission is denied.
-        (error) => {
-          console.log("Failed to get current location information.");
-          failureFunction();
-      });
-    } 
-    // this will be called if the browser doesn't support geolocation
-    else {
-      console.log("Failed to get current location information.");
-      failureFunction();
-    }
+    console.log("Failed to get current location information.");
+    failureFunction();
   }
 }
 
@@ -73,6 +65,11 @@ function calcColorIcon(c) {
     default:
       return 'images/green-marker.png';
   };
+}
+
+// javascript objects x and y must have fields lat and lng defined
+function calcDist(a, b) {
+  return Math.sqrt(Math.pow(a.lat - b.lat, 2) + Math.pow(a.lng - b.lng, 2));
 }
 
 // define a generic Ajax error handler:
