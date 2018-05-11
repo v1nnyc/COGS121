@@ -180,4 +180,11 @@ a {
 	margin-bottom: .5em;
 	margin-right: .5em;
 	flex-direction: row !important;
+	box-shadow: 0 5px 5px rgba(0,0,0,.08);
+	border: none !important;
+	border-radius: 2px !important;
+}
+
+.btn-group{
+	padding-right: 25px;
 }

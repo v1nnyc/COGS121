@@ -12,13 +12,28 @@
       <div class="break"></div>
 
       <div id="top_bar">
-        <h4 class="text-label">Good For:</h4>
-        <div class="crappy-button highlighted" id="fastest">
-          <h4>Fastest</h4>
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-secondary active" id="fastest">
+            <input type="radio" name="options"  autocomplete="off" checked> Fastest
+          </label>
+          <label class="btn btn-outline-secondary" id="closest">
+            <input type="radio" name="options" autocomplete="off"> Closest
+          </label>
         </div>
-        <div class="crappy-button deHighlighted" id="closest">
-          <h4>Closest</h4>
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-secondary active" id="">
+            <input type="radio" name="options"  autocomplete="off" checked> UCSD Protected
+          </label>
+          <label class="btn btn-outline-secondary" id="">
+            <input type="radio" name="options" autocomplete="off"> UCSD Guest
+          </label>
+          <label class="btn btn-outline-secondary" id="">
+            <input type="radio" name="options" autocomplete="off"> RESNET
+          </label>
         </div>
+
         <div class="crappy-button" id="contribute">
           <h4>Contribute</h4>
         </div>
@@ -67,5 +82,6 @@
     <script src="js/common.js"></script>
     <script src="js/addSpeed.js"></script>
     <script src="js/home.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
