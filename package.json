@@ -19,8 +19,9 @@
     "jquery": "^3.3.1",
     "mongodb": "*",
     "mongoose": "*",
-    "sqlite3": "^4.0.0",
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.17.3",
+    "speedtest-net": "^1.4.2",
+    "sqlite3": "^4.0.0"
   },
   "engines": {
     "node": "8.9.x"

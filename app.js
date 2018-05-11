@@ -54,6 +54,7 @@ app.get('/', titlePage.view);
 app.get('/home', home.view);
 app.get('/getMarkers', home.markers);
 app.get('/getDots', home.dots);
+app.get('/checkSpeed', addSpeed.checkSpeed)
 app.post('/add', addSpeed.add);
 app.get('/titlePage', titlePage.view);
 
