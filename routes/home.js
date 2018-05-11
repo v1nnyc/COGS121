@@ -16,7 +16,7 @@ exports.markers = function(req, res){
     'SELECT * FROM markers',
     // callback function to run when the query finishes:
     (err, rows) => {
-      console.log(rows);
+      //console.log(rows);
       if (rows.length > 0) {
         res.send(rows);
       } else {
@@ -31,7 +31,7 @@ exports.dots = function(req, res){
     'SELECT * FROM dots',
     // callback function to run when the query finishes:
     (err, rows) => {
-      console.log(rows);
+      //console.log(rows);
       if (rows.length > 0) {
         res.send(rows);
       } else {
