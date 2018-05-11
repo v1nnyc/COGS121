@@ -1,6 +1,7 @@
 // Attempts to add the user's current location and internet speed to database
 function addSpeed() {
   // TODO: use a more robust method for getting internet speed
+<<<<<<< HEAD
   let networkSpeed;
 
   //call checkSpeed in routes/addSpeed
@@ -14,8 +15,8 @@ function addSpeed() {
         //call this fuction if get location successfully
         (position) => {
           const data = {
-            lat: position.latitude,
-            lng: position.longitude,
+            lat: position.lat,
+            lng: position.lng,
             speed: networkSpeed
           };
 

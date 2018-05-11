@@ -2,6 +2,10 @@
 let listItems = [];
 let markers = [];
 let map = null;
+const filter = {
+  CLOSEST: 0,
+  FASTEST: 1
+};
 
 $(document).ready(() => {
   // When the user clicks contribute, open add speed popup
@@ -34,9 +38,9 @@ function initMap() {
   });
 
   // add current location marker if current location is available
-  checkForCurrentLocation((position) => {
+  checkForCurrentLocation((currentLoc) => {
     const marker = new google.maps.Marker({
-      position: {lat: position.latitude, lng: position.longitude},
+      position: currentLoc,
       icon: "images/current-location.png",
       map: map
     });
@@ -57,6 +61,18 @@ function initMap() {
     });
   });
 
+  // create 4 invisible markers to be used for list results
+  // in future we can add more or less markers
+  for (let i = 1; i < 5; i++) {
+    const marker = new google.maps.Marker({
+      position: center,
+      icon: 'images/marker-' + i + '.png',
+      map: map,
+      visible: false,
+    });
+    markers.push(marker);
+  }
+
   getListResults();
 
 }
@@ -68,10 +84,55 @@ function getListResults() {
         marker['color'] = calcColor(marker.speed);
         listItems.push(marker);
     });
-    // reorderListItems(true);
-    createListFromObjs();
-    createMarkersFromObjs();
+    // initially list will be ordered by fastest
+    reorderListItems(filter.FASTEST);
   });
+}
+
+// This should not be called with a value of 
+// CLOSEST if location data is not available
+function reorderListItems(filterBy) {
+  // reorder by CLOSEST
+  if (filterBy == filter.CLOSEST) {
+    checkForCurrentLocation(
+      // call this function on success, we have current location information
+      (currentLoc) => {
+        // remove all children from list-results
+        $('#list-results').empty();
+        // sort by function that compares to current location,
+        // smallest distance first
+        listItems.sort(function(a, b) {
+          const aDist = calcDist(a, currentLoc);
+          const bDist = calcDist(b, currentLoc);
+          return aDist == bDist
+              ? 0
+              : (aDist > bDist ? 1 : -1);
+        });
+        // add back the new list and markers
+        createListFromObjs();
+        repositionMarkersFromObjs();
+      }, 
+      // call this function if unable to get current location
+      // TODO: throw an error?
+      () => {
+        console.log("Unable to sort by closest without current location information.");
+    });
+
+  // Reorder by FASTEST
+  } else {
+    // remove all children from list-results
+    $('#list-results').empty();
+
+    // sort by function that compares speed, largest speed first
+    listItems.sort(function(a, b) {
+      return a.speed == b.speed
+          ? 0 
+          : (a.speed < b.speed ? 1 : -1);
+    });
+    // add back the new list and markers
+    createListFromObjs();
+    repositionMarkersFromObjs();
+  }
 }
 
 
@@ -96,15 +157,12 @@ function createListFromObjs() {
 }
 
 
-function createMarkersFromObjs() {
-  // for now only add first 4 list items as markers
+function repositionMarkersFromObjs() {
+  // move the markers to match the first four list
+  // items, and make sure they're visible
   for (let i = 0; i < 4; i++) {
-    const marker = new google.maps.Marker({
-      position: {lat: listItems[i].lat, lng: listItems[i].lng},
-      icon: ('images/marker-' + (i+1) + '.png'),
-      map: map
-    });
-    markers.push(marker);
+    markers[i].setPosition({lat: listItems[i].lat, lng: listItems[i].lng});
+    markers[i].setVisible(true);
   }
 }
 
