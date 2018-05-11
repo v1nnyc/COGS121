@@ -24,7 +24,7 @@ a {
 	padding-left: 15px;
 }
 
-.label {
+.crappy-button {
 	float: left;
     width: 150px;
     border-radius: 10px;
@@ -36,21 +36,16 @@ a {
     margin: 0px 15px 15px 15px;
 }
 
-#green {
-	background-color: green;
+.highlighted {
+	background-color: #999999;
 }
 
-
-#yellow {
-	background-color: yellow;
-}
-
-#red {
-	background-color: red;
+.deHighlighted {
+	background-color: #d1d1d1;
 }
 
 #contribute {
-	background-color: lightgrey;
+	background-color: #d1d1d1;
 	float: right;
 }
 
