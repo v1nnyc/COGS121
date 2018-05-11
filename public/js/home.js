@@ -1,11 +1,18 @@
 // required for reordering list
-let listItems = [];
-let markers = [];
-let map = null;
 const filter = {
   CLOSEST: 0,
   FASTEST: 1
 };
+const filterId = {
+  0: '#closest',
+  1: '#fastest'
+};
+let listItems = [];
+let markers = [];
+let currentFilter = filter.FASTEST; // default filter is fastest
+let map = null;
+
+
 
 $(document).ready(() => {
   // When the user clicks contribute, open add speed popup
@@ -20,6 +27,10 @@ $(document).ready(() => {
 
   // function located in js/addSpeed.js
   $('#add-speed').click(addSpeed);
+
+  $('#fastest').click(() => filterClicked(filter.FASTEST));
+
+  $('#closest').click(() => filterClicked(filter.CLOSEST));
 
 });
 
@@ -44,9 +55,13 @@ function initMap() {
       icon: "images/current-location.png",
       map: map
     });
+<<<<<<< HEAD
   },
     // TODO: if location is not available should grey out "Closest" filter
     () => {});
+=======
+  }, () => {});
+>>>>>>> 9eb2f31b53c0bdc17a29973f9e0048c49aa8d89c
 
   // create internet speed dots on map
   doAjaxGet('/getDots', (dots) => {
@@ -84,14 +99,22 @@ function getListResults() {
         marker['color'] = calcColor(marker.speed);
         listItems.push(marker);
     });
-    // initially list will be ordered by fastest
-    reorderListItems(filter.FASTEST);
+    // initially list will be ordered by fastest.
+    // don't need to use the callback
+    reorderListItems(filter.FASTEST, () => {});
   });
 }
 
+<<<<<<< HEAD
 // This should not be called with a value of
 // CLOSEST if location data is not available
 function reorderListItems(filterBy) {
+=======
+// calls the callback with true for success or false for failure
+// will only fail when filtering by closest and location data not
+// available
+function reorderListItems(filterBy, callback) {
+>>>>>>> 9eb2f31b53c0bdc17a29973f9e0048c49aa8d89c
   // reorder by CLOSEST
   if (filterBy == filter.CLOSEST) {
     checkForCurrentLocation(
@@ -111,11 +134,15 @@ function reorderListItems(filterBy) {
         // add back the new list and markers
         createListFromObjs();
         repositionMarkersFromObjs();
+<<<<<<< HEAD
       },
+=======
+        callback(true);
+      }, 
+>>>>>>> 9eb2f31b53c0bdc17a29973f9e0048c49aa8d89c
       // call this function if unable to get current location
-      // TODO: throw an error?
       () => {
-        console.log("Unable to sort by closest without current location information.");
+        callback(false);
     });
 
   // Reorder by FASTEST
@@ -132,6 +159,30 @@ function reorderListItems(filterBy) {
     // add back the new list and markers
     createListFromObjs();
     repositionMarkersFromObjs();
+    callback(true);
+  }
+}
+
+function filterClicked(filter) {
+  // don't do anything if filter clicked is already selected
+  if (filter != currentFilter) {
+    // TODO: start loading animation
+    reorderListItems(filter, (success) => {
+      if (success) {
+        const toDeHighlight = filterId[currentFilter];
+        const toHighlight = filterId[filter];
+        currentFilter = filter; // update the current filter
+        $(toDeHighlight).addClass('deHighlighted');
+        $(toDeHighlight).removeClass('highlighted');
+        $(toHighlight).addClass('highlighted');
+        $(toHighlight).removeClass('deHighlighted');
+
+        //TODO: end loading animation
+      } else {
+        // TODO: VINCENT this is where we should display a pop up saying you
+        // can't order by closest if your location data isn't available!!!
+      }
+    });
   }
 }
 
