@@ -2,6 +2,7 @@
 body {
 	/*font-family: Arial, Helvetica, sans-serif;*/
 	font-family: "Roboto", sans-serif;
+	background-color: #F2F2F2 !important;
 	/*padding: 0px;
 	margin: 0px;*/
 }
@@ -18,6 +19,7 @@ a {
 	color: black;
 	text-decoration: none;
 }
+
 
 /* Button Section */
 .text-label {
@@ -61,45 +63,69 @@ a {
 
 
 /* List Section */
-#list-results {
+/* #list-results {
 	float: left;
 	width: 35%;
 	margin: 0px;
-}
+}*/
 
 .list-result {
 	margin-bottom: 15px;
 }
 
+.list-result-info p {
+	font-size: 12px;
+	margin-bottom: 0rem !important;
+}
+
 .list-pic {
-	width: 35%;
 	float: left;
 	margin-right: 5%;
 }
 
 .list-result-info {
-	width: 60%;
-	float: left;
+	width: 65%;
+}
+
+.padding-top-10{
+	padding-top: 10px;
 }
 
 .list-result-info h2 {
-	line-height: 10px;
+	margin-bottom: 0px;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.list-pic img {
+	width: 215px; /* You can set the dimensions to whatever you want */
+  height: 135px;
+  object-fit: cover;
 }
 
 .green-speed {
 	color: green;
+	line-height: 0px;
+	font-size: 26px;
 }
 
 .yellow-speed {
 	color: yellow;
+	line-height: 0px;
+	font-size: 26px;
 }
+
+.grey {
+	color: #979797;
+}
+
 
 /* Map Section */
 #map {
-	float: left;
-	width: 60%;
-	height: 500px;
-	margin: 0px 30px 0px 0px;
+	/* float: left; */
+	/* width: 60%; */
+	height: 80%;
+	margin: 0px 0px 0px 0px;
 }
 
 
@@ -153,4 +179,10 @@ a {
 .mt-10 {
 	margin-top: 10em;
 
+}
+
+.card {
+	margin-bottom: .5em;
+	margin-right: .5em;
+	flex-direction: row !important;
 }
