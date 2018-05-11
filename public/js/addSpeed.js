@@ -3,39 +3,28 @@ function addSpeed() {
   // TODO: use a more robust method for getting internet speed
   let networkSpeed;
 
-  //call checkSpeed in routes/addSpeed
-  doAjaxGet('/checkSpeed', (speed) => {
-    console.log(speed);
+  if (navigator.connection) {
+    checkForCurrentLocation(
+      //call this fuction if get location successfully
+      (position) => {
+        const data = {
+          lat: position.lat,
+          lng: position.lng,
+        };
 
-    networkSpeed = speed.speed;
-
-    if (navigator.connection) {
-      checkForCurrentLocation(
-        //call this fuction if get location successfully
-        (position) => {
-          const data = {
-            lat: position.lat,
-            lng: position.lng,
-            speed: networkSpeed
-          };
-
-          doAjaxPost('/add', data, (response) => {
-            //pass into giveConfirmation method
-            giveConfirmation(response.success, networkSpeed, '');
-          });
-        },
-        // call this function if failed to get location
-        () => {
-          giveConfirmation(false, 0, 'Unable to retrieve your location.')
+        doAjaxPost('/add', data, (response) => {
+          //pass into giveConfirmation method
+          giveConfirmation(response.success, response.speed, '');
         });
-    } else {
-      // call this function if we can't get internet speed from browser
-      giveConfirmation(false, 0, 'This is not supported by your browser, please use Chrome.');
-    }
-  });
-
-
-
+      },
+      // call this function if failed to get location
+      () => {
+        giveConfirmation(false, 0, 'Unable to retrieve your location.')
+      });
+  } else {
+    // call this function if we can't get internet speed from browser
+    giveConfirmation(false, 0, 'This is not supported by your browser, please use Chrome.');
+  }
 }
 
 
