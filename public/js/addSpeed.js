@@ -13,7 +13,7 @@ function addSpeed() {
       giveConfirmation(false, 0, 'Unable to retrieve your location.')
     });
 }
-}
+
 
 
 // closes the add speed popup, opens the confirmation popup and populates text accordingly
