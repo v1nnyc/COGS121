@@ -55,13 +55,9 @@ function initMap() {
       icon: "images/current-location.png",
       map: map
     });
-<<<<<<< HEAD
   },
     // TODO: if location is not available should grey out "Closest" filter
     () => {});
-=======
-  }, () => {});
->>>>>>> 9eb2f31b53c0bdc17a29973f9e0048c49aa8d89c
 
   // create internet speed dots on map
   doAjaxGet('/getDots', (dots) => {
@@ -105,16 +101,10 @@ function getListResults() {
   });
 }
 
-<<<<<<< HEAD
-// This should not be called with a value of
-// CLOSEST if location data is not available
-function reorderListItems(filterBy) {
-=======
 // calls the callback with true for success or false for failure
 // will only fail when filtering by closest and location data not
 // available
 function reorderListItems(filterBy, callback) {
->>>>>>> 9eb2f31b53c0bdc17a29973f9e0048c49aa8d89c
   // reorder by CLOSEST
   if (filterBy == filter.CLOSEST) {
     checkForCurrentLocation(
@@ -134,12 +124,8 @@ function reorderListItems(filterBy, callback) {
         // add back the new list and markers
         createListFromObjs();
         repositionMarkersFromObjs();
-<<<<<<< HEAD
-      },
-=======
         callback(true);
-      }, 
->>>>>>> 9eb2f31b53c0bdc17a29973f9e0048c49aa8d89c
+      },
       // call this function if unable to get current location
       () => {
         callback(false);
