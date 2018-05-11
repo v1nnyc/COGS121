@@ -1,16 +1,18 @@
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('markers.db');
 const speedTest = require('speedtest-net');
-const test = speedTest({
-          maxTime:1000, 
-          log:true, 
-          maxServers:10, 
-          pingCount:10});
 
 // add a speed to the dots table
 exports.add = function(req, res) {
   const date = new Date();
   const sqllite_date = date.toISOString();
+  const test = speedTest({
+          maxTime:1000, 
+          log:true, 
+          maxServers:10, 
+          pingCount:10});
+
+  // will get called if speed test succeeds
   test.on('data', data => {
     db.run(
       'INSERT INTO dots VALUES ($lat, $lng, $speed, $date)',
@@ -30,5 +32,12 @@ exports.add = function(req, res) {
         }
       }
     );
+  });
+
+  // will get called if speed tests fails
+  test.on('error', err => {
+    console.log('Speed test error:');
+    console.error(err);
+    res.send({success: false, speed: 0});
   });
 };
