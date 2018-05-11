@@ -1,30 +1,18 @@
 // Attempts to add the user's current location and internet speed to database
 function addSpeed() {
-  // TODO: use a more robust method for getting internet speed
-  let networkSpeed;
-
-  if (navigator.connection) {
-    checkForCurrentLocation(
-      //call this fuction if get location successfully
-      (position) => {
-        const data = {
-          lat: position.lat,
-          lng: position.lng,
-        };
-
-        doAjaxPost('/add', data, (response) => {
-          //pass into giveConfirmation method
-          giveConfirmation(response.success, response.speed, '');
-        });
-      },
-      // call this function if failed to get location
-      () => {
-        giveConfirmation(false, 0, 'Unable to retrieve your location.')
+  checkForCurrentLocation(
+    //call this fuction if we get location successfully
+    (position) => {
+      doAjaxPost('/add', position, (response) => {
+        //pass into giveConfirmation method
+        giveConfirmation(response.success, response.speed, '');
       });
-  } else {
-    // call this function if we can't get internet speed from browser
-    giveConfirmation(false, 0, 'This is not supported by your browser, please use Chrome.');
-  }
+    },
+    // call this function if failed to get location
+    () => {
+      giveConfirmation(false, 0, 'Unable to retrieve your location.')
+    });
+}
 }
 
 
