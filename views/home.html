@@ -23,13 +23,13 @@
         </div>
 
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-outline-secondary active" id="">
+          <label class="btn btn-outline-secondary active" id="protected">
             <input type="radio" name="options"  autocomplete="off" checked> UCSD Protected
           </label>
-          <label class="btn btn-outline-secondary" id="">
+          <label class="btn btn-outline-secondary" id="guest">
             <input type="radio" name="options" autocomplete="off"> UCSD Guest
           </label>
-          <label class="btn btn-outline-secondary" id="">
+          <label class="btn btn-outline-secondary" id="resnet">
             <input type="radio" name="options" autocomplete="off"> RESNET
           </label>
         </div>
@@ -71,6 +71,20 @@
         <h3 id="confirmation-title"></h3>
         <p id="confirmation-text"></p>
         <a href="/home"><button>Close</button></a>
+      </div>
+    </div>
+
+    <div id="locationDataModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>Please turn on location information if you'd like to filter by closest.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -1,4 +1,4 @@
-// required for reordering list
+/* required for reordering list */
 const filter = {
   CLOSEST: 0,
   FASTEST: 1
@@ -7,9 +7,22 @@ const filterId = {
   0: '#closest',
   1: '#fastest'
 };
+const network = {
+  PROTECTED: 0,
+  GUEST: 1,
+  RESNET: 2
+};
+const networkId = {
+  0: '#protected',
+  1: '#guest',
+  2: '#resnet'
+};
 let listItems = [];
 let markers = [];
-let currentFilter = filter.FASTEST; // default filter is fastest
+// default filter is fastest
+let currentFilter = filter.FASTEST; 
+// default network is UCSD protected
+let currentNetwork = network.PROTECTED; 
 let map = null;
 
 
@@ -149,25 +162,26 @@ function reorderListItems(filterBy, callback) {
   }
 }
 
-function filterClicked(filter) {
+function filterClicked(newFilter) {
   // don't do anything if filter clicked is already selected
-  if (filter != currentFilter) {
+  if (newFilter != currentFilter) {
     // TODO: start loading animation
-    reorderListItems(filter, (success) => {
+    reorderListItems(newFilter, (success) => {
       if (success) {
-        const toDeHighlight = filterId[currentFilter];
-        const toHighlight = filterId[filter];
-        currentFilter = filter; // update the current filter
-        $(toDeHighlight).addClass('deHighlighted');
-        $(toDeHighlight).removeClass('highlighted');
-        $(toHighlight).addClass('highlighted');
-        $(toHighlight).removeClass('deHighlighted');
-
-        //TODO: end loading animation
+        currentFilter = newFilter; // update the current filter
       } else {
-        // TODO: VINCENT this is where we should display a pop up saying you
-        // can't order by closest if your location data isn't available!!!
+        if (newFilter == filter.CLOSEST) {
+          $('#locationDataModal').modal();
+        }
+
+        // Move the selected radio button back to original
+        const toSelect = filterId[currentFilter];
+        const toDeselect = filterId[newFilter];
+        $(toSelect).addClass('active');
+        $(toDeselect).removeClass('active focus');
       }
+
+      //TODO: end loading animation
     });
   }
 }
