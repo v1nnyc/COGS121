@@ -47,8 +47,8 @@ exports.dots = function(req, res) {
 function addAverageSpeeds(dots, markers) {
   // add empty speeds and num dots to each marker for each network
   markers.forEach(marker => {
-    marker.networkSpeeds = [0, 0, 0];
-    marker.networkCounts = [0, 0, 0];
+    marker.speeds = [0, 0, 0];
+    marker.counts = [0, 0, 0];
   });
 
   dots.forEach(dot => {
@@ -56,17 +56,17 @@ function addAverageSpeeds(dots, markers) {
       // if the dot is in the marker's radius, add to correct 
       // average speed for that marker
       if((calcDist(marker, dot)) < marker.radius) {
-        marker.networkSpeeds[networks[dot.network]] += dot.speed;
-        marker.networkCounts[networks[dot.network]] += 1;
+        marker.speeds[networks[dot.network]] += dot.speed;
+        marker.counts[networks[dot.network]] += 1;
       }
     });
   });
 
   // for each marker, for each network, divide each speed by each count
   markers.forEach(marker => {
-    for (let i = 0; i < marker.networkSpeeds.length; i++) {
-      if (marker.networkCounts[i] != 0) {
-        marker.networkSpeeds[i] = marker.networkSpeeds[i] / marker.networkCounts[i];
+    for (let i = 0; i < marker.speeds.length; i++) {
+      if (marker.counts[i] != 0) {
+        marker.speeds[i] = marker.speeds[i] / marker.counts[i];
       }
     }
   });

@@ -10,19 +10,18 @@ const db = new sqlite3.Database('markers.db');
 db.serialize(() => {
   /* NOTE: network should be one of "PROTECTED", "GUEST", or "RESNET" */
   db.run("CREATE TABLE dots (lat FLOAT, lng FLOAT, speed FLOAT, date DATE, network TEXT)");
-  /* TODO: remove the speed field here (just a dummy field for now) */
-  db.run("CREATE TABLE markers (lat FLOAT, lng FLOAT, name TEXT, image TEXT, speed FLOAT, radius FLOAT)");
+
+  db.run("CREATE TABLE markers (lat FLOAT, lng FLOAT, name TEXT, image TEXT, radius FLOAT)");
 
   db.run("INSERT INTO dots VALUES('32.88121', '-117.237449', '75.11', '0', 'PROTECTED')");
   db.run("INSERT INTO dots VALUES('32.880097', '-117.236431', '10.34', '0', 'RESNET')");
   db.run("INSERT INTO dots VALUES('32.880984', '-117.237821', '36.12', '0', 'GUEST')");
   db.run("INSERT INTO dots VALUES('32.879323', '-117.237261', '4.5', '0', 'PROTECTED')");
 
-  /* TODO: change the radius to something reasonable, right now it's way too big */
-  db.run("INSERT INTO markers VALUES('32.880236',  '-117.236392', 'Starbucks', 'images/starbucks.jpg','51.2', '2')");
-  db.run("INSERT INTO markers VALUES('32.881130',  '-117.237556', 'Geisel Library', 'images/geisel.jpg','48.62', '2')");
-  db.run("INSERT INTO markers VALUES('32.877879',  '-117.237243', 'Center Hall', 'images/center_hall.jpg','29.9', '2')");
-  db.run("INSERT INTO markers VALUES('32.880153',  '-117.236093', 'Commuter Lounge', 'images/commuter_lounge.jpg','17.3', '2')");
+  db.run("INSERT INTO markers VALUES('32.880236',  '-117.236392', 'Starbucks', 'images/starbucks.jpg', '.0004')");
+  db.run("INSERT INTO markers VALUES('32.881130',  '-117.237556', 'Geisel Library', 'images/geisel.jpg', '.0007')");
+  db.run("INSERT INTO markers VALUES('32.877879',  '-117.237243', 'Center Hall', 'images/center_hall.jpg', '.0006')");
+  db.run("INSERT INTO markers VALUES('32.880153',  '-117.236093', 'Commuter Lounge', 'images/commuter_lounge.jpg', '.0006')");
 });
 
 db.close();

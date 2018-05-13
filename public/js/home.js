@@ -45,9 +45,14 @@ $(document).ready(() => {
   // function located in js/addSpeed.js
   $('#add-speed').click(addSpeed);
 
+  // changing the filter
   $('#fastest').click(() => filterClicked(filter.FASTEST));
-
   $('#closest').click(() => filterClicked(filter.CLOSEST));
+
+  // changing the network
+  $('#protected').click(() => networkClicked(network.PROTECTED));
+  $('#guest').click(() => networkClicked(network.GUEST));
+  $('#resnet').click(() => networkClicked(network.RESNET));
 
 });
 
@@ -106,10 +111,7 @@ function initMap() {
 // should only be called once when the initMap function is called
 function getListResults() {
   doAjaxGet('/getMarkers', (data) => {
-    data.forEach(marker => {
-        marker['color'] = calcColor(marker.speed);
-        listItems.push(marker);
-    });
+    listItems = data;
     // initially list will be ordered by fastest.
     // don't need to use the callback
     reorderListItems(filter.FASTEST, () => {});
@@ -151,11 +153,11 @@ function reorderListItems(filterBy, callback) {
     // remove all children from list-results
     $('#list-results').empty();
 
-    // sort by function that compares speed, largest speed first
+    // sort by function that compares currentNetwork speed, largest speed first
     listItems.sort(function(a, b) {
-      return a.speed == b.speed
+      return a.speeds[currentNetwork] == b.speeds[currentNetwork]
           ? 0
-          : (a.speed < b.speed ? 1 : -1);
+          : (a.speeds[currentNetwork] < b.speeds[currentNetwork] ? 1 : -1);
     });
     // add back the new list and markers
     createListFromObjs();
@@ -188,19 +190,49 @@ function filterClicked(newFilter) {
   }
 }
 
+function networkClicked(newNetwork) {
+  // don't do anything if the network clicked is already selected
+  if (newNetwork != currentNetwork) {
+    // TODO: start loading animation
+
+    oldNetwork = currentNetwork;
+    currentNetwork = newNetwork;
+
+    // reorder list and markers based on currentNetwork
+    reorderListItems(currentFilter, (success) => {
+      if (success) {
+        // TODO: should call repositionDots here
+      } else {
+        // change currentNetwork back to original
+        currentNetwork = oldNetwork;
+        // Move the selected radio button back to original
+        const toSelect = networkId[currentNetwork];
+        const toDeselect = filterId[newNetwork];
+        $(toSelect).addClass('active');
+        $(toDeselect).removeClass('active focus');
+      }
+
+      //TODO: end loading animation
+    });
+  }
+}
+
 function createListFromObjs() {
   const listContainer = $('#list-results');
   for (let i = 0; i < listItems.length; i++) {
     htmlString = ' <div class="card">' +
 
                     '<div class="list-pic">' +
-                      '<img src="' + listItems[i].image + '" alt="' + listItems[i].name + '" class="float-left img-responsive"/>' +
+                      '<img src="' + listItems[i].image + '" alt="' + 
+                          listItems[i].name + '" class="float-left img-responsive"/>' +
                     '</div>' +
                     '<div class="list-result-info">' +
                       '<h2 class="list-result-title padding-top-10">' + (i+1) + '. ' + listItems[i].name + '</h2>' +
                       '<p>Best WiFi Network: </p>' +
                       '<div class="row no-gutters padding-top-10">' +
-                      '<div class="col-8"><p>Avg Speed:</p>' + ' <span class="' + listItems[i].color + '-speed">•</span>' + listItems[i].speed + ' Mbps</div>' +
+                      '<div class="col-8"><p>Avg Speed:</p>' + 
+                          ' <span class="' + calcColor(listItems[i].speeds[currentNetwork]) + 
+                          '-speed">•</span>' + listItems[i].speeds[currentNetwork] + ' Mbps</div>' +
                       '<div class="col-4"><p>Distance: </p> 500ft</div>' +
                       '</div>' +
                       '<p class="padding-top-10 grey"> Last updated: Today at 3:21PM</p>' +

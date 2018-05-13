@@ -110,6 +110,12 @@ a {
 	font-size: 26px;
 }
 
+.red-speed {
+	color: red;
+	line-height: 0px;
+	font-size: 26px;
+}
+
 .grey {
 	color: #979797;
 }

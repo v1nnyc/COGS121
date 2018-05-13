@@ -50,9 +50,10 @@ function doAjaxPost(url, data, callbackFunc) {
   });
 }
 
+// TODO: update this to be more reasonable
 function calcColor(x) {
-  if(x < 5) return 'red';
-  else if(x < 25) return 'yellow';
+  if (x < 5) return 'red';
+  else if (x < 25) return 'yellow';
   else return 'green';
 }
 
