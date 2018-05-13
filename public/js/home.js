@@ -99,8 +99,8 @@ function calcAverageSpeeds(){
       listItems.forEach(function(marker) {
         if((calcCrow(marker, dot)) < marker.radius){
           console.log("adding dot to:" + marker.name);
-          let networkSpeed = JSON.stringify(dot.network + ' speed');
-          let networkDotCount = JSON.stringify(dot.network + ' count');
+          let networkSpeed = dot.network + ' speed';
+          let networkDotCount = dot.network + ' count';
           if(marker[networkSpeed] && marker[networkDotCount]){
             let temp = marker[networkSpeed] * marker[networkDotCount];
             marker[networkDotCount]++;
