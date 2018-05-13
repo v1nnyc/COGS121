@@ -91,10 +91,8 @@ function initMap() {
 
 }
 
-//gets called after we get all of the dots while map is initializing
 function calcAverageSpeeds(){
   doAjaxGet('/getDots', (dots) => {
-    console.log(listItems);
     dots.forEach(function(dot) {
       listItems.forEach(function(marker) {
         if((calcCrow(marker, dot)) < marker.radius){
