@@ -108,16 +108,22 @@ function calcAverageSpeeds(){
   doAjaxGet('/getDots', (dots) => {
     dots.forEach(function(dot) {
       listItems.forEach(function(marker) {
+        //calcCrow is new distance function
         if((calcCrow(marker, dot)) < marker.radius){
           console.log("adding dot to:" + marker.name);
+          /*how we implement this may need to change, right now i'm just putting
+          the values in as "network speed/count"
+          */
           let networkSpeed = dot.network + ' speed';
           let networkDotCount = dot.network + ' count';
+          //if there's already an average for this network update the average
           if(marker[networkSpeed] && marker[networkDotCount]){
             let temp = marker[networkSpeed] * marker[networkDotCount];
             marker[networkDotCount]++;
             temp = temp + dot.speed;
             marker[networkSpeed] = temp / marker[networkDotCount];
           } else {
+            //otherwise add the first speed to the average
             marker[networkSpeed] = dot.speed;
             marker[networkDotCount] = 1;
           }
