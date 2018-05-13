@@ -7,10 +7,12 @@ const filterId = {
   0: '#closest',
   1: '#fastest'
 };
+//listItems are markers
 let listItems = [];
 let markers = [];
 let currentFilter = filter.FASTEST; // default filter is fastest
 let map = null;
+let dots =[];
 
 
 
@@ -60,8 +62,9 @@ function initMap() {
     () => {});
 
   // create internet speed dots on map
-  doAjaxGet('/getDots', (dots) => {
-    dots.forEach(function(feature) {
+  doAjaxGet('/getDots', (dot) => {
+    dot.forEach(function(feature) {
+      dots.push(feature);
       if(feature.lat && feature.lng && feature.speed){
         const marker = new google.maps.Marker({
           position: {lat: feature.lat, lng: feature.lng},
@@ -88,6 +91,32 @@ function initMap() {
 
 }
 
+//gets called after we get all of the dots while map is initializing
+function calcAverageSpeeds(){
+  doAjaxGet('/getDots', (dots) => {
+    console.log(listItems);
+    dots.forEach(function(dot) {
+      listItems.forEach(function(marker) {
+        if((calcCrow(marker, dot)) < marker.radius){
+          console.log("adding dot to:" + marker.name);
+          let networkSpeed = JSON.stringify(dot.network + ' speed');
+          let networkDotCount = JSON.stringify(dot.network + ' count');
+          if(marker[networkSpeed] && marker[networkDotCount]){
+            let temp = marker[networkSpeed] * marker[networkDotCount];
+            marker[networkDotCount]++;
+            temp = temp + dot.speed;
+            marker[networkSpeed] = temp / marker[networkDotCount];
+          } else {
+            marker[networkSpeed] = dot.speed;
+            marker[networkDotCount] = 1;
+          }
+        }
+      });
+    });
+  });
+
+}
+
 // should only be called once when the initMap function is called
 function getListResults() {
   doAjaxGet('/getMarkers', (data) => {
@@ -98,6 +127,7 @@ function getListResults() {
     // initially list will be ordered by fastest.
     // don't need to use the callback
     reorderListItems(filter.FASTEST, () => {});
+    calcAverageSpeeds();
   });
 }
 
@@ -171,7 +201,6 @@ function filterClicked(filter) {
     });
   }
 }
-
 
 function createListFromObjs() {
   const listContainer = $('#list-results');
