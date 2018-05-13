@@ -6,6 +6,9 @@ const speedTest = require('speedtest-net');
 exports.add = function(req, res) {
   const date = new Date();
   const sqllite_date = date.toISOString();
+  // TODO: remove this since it's testing the speed of the server and not
+  // the speed of the user's internet, move this or some other method to 
+  // client side
   var test = speedTest({maxTime: 5000});
 
   // will get called if speed test succeeds
@@ -18,7 +21,7 @@ exports.add = function(req, res) {
         $lng: req.body.lng,
         $speed: data.speeds.download,
         $date: sqllite_date,
-        $network: 'protected'
+        $network: 'PROTECTED' // TODO: insert the real network into database
       },
       // callback function to run when the query finishes:
       (err) => {

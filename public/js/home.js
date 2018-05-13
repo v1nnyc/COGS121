@@ -8,6 +8,7 @@ const filterId = {
   1: '#fastest'
 };
 
+/* required for changing between networks */
 const network = {
   PROTECTED: 0,
   GUEST: 1,
@@ -18,14 +19,15 @@ const networkId = {
   1: '#guest',
   2: '#resnet'
 };
+
 let listItems = [];
 let markers = [];
+let dots = [];
 // default filter is fastest
 let currentFilter = filter.FASTEST;
 // default network is UCSD protected
 let currentNetwork = network.PROTECTED;
-let map = null;
-let dots =[];
+
 
 
 
@@ -58,7 +60,7 @@ function initMap() {
   // center map around Geisel
   const center = {lat: 32.881214, lng: -117.237449};
   //store map as global variable
-  map = new google.maps.Map(document.getElementById('map'), {
+  const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: center
   });
@@ -70,18 +72,15 @@ function initMap() {
       icon: "images/current-location.png",
       map: map
     });
-  },
-    // TODO: if location is not available should grey out "Closest" filter
-    () => {});
+  }, () => {}); // do nothing if no location information
 
   // create internet speed dots on map
-  doAjaxGet('/getDots', (dot) => {
-    dot.forEach(function(feature) {
-      dots.push(feature);
-      if(feature.lat && feature.lng && feature.speed){
+  doAjaxGet('/getDots', (data) => {
+    data.forEach(function(dot) {
+      if(dot.lat && dot.lng && dot.speed){
         const marker = new google.maps.Marker({
-          position: {lat: feature.lat, lng: feature.lng},
-          icon: calcColorIcon(calcColor(feature.speed)),
+          position: {lat: dot.lat, lng: dot.lng},
+          icon: calcColorIcon(calcColor(dot.speed)),
           map: map
         });
       }
@@ -104,36 +103,6 @@ function initMap() {
 
 }
 
-function calcAverageSpeeds(){
-  doAjaxGet('/getDots', (dots) => {
-    dots.forEach(function(dot) {
-      listItems.forEach(function(marker) {
-        //calcCrow is new distance function
-        if((calcCrow(marker, dot)) < marker.radius){
-          console.log("adding dot to:" + marker.name);
-          /*how we implement this may need to change, right now i'm just putting
-          the values in as "network speed/count"
-          */
-          let networkSpeed = dot.network + ' speed';
-          let networkDotCount = dot.network + ' count';
-          //if there's already an average for this network update the average
-          if(marker[networkSpeed] && marker[networkDotCount]){
-            let temp = marker[networkSpeed] * marker[networkDotCount];
-            marker[networkDotCount]++;
-            temp = temp + dot.speed;
-            marker[networkSpeed] = temp / marker[networkDotCount];
-          } else {
-            //otherwise add the first speed to the average
-            marker[networkSpeed] = dot.speed;
-            marker[networkDotCount] = 1;
-          }
-        }
-      });
-    });
-  });
-
-}
-
 // should only be called once when the initMap function is called
 function getListResults() {
   doAjaxGet('/getMarkers', (data) => {
@@ -144,7 +113,6 @@ function getListResults() {
     // initially list will be ordered by fastest.
     // don't need to use the callback
     reorderListItems(filter.FASTEST, () => {});
-    calcAverageSpeeds();
   });
 }
 
@@ -197,7 +165,7 @@ function reorderListItems(filterBy, callback) {
 }
 
 function filterClicked(newFilter) {
-  // don't do anything if filter clicked is already selected
+  // don't do anything if the filter clicked is already selected
   if (newFilter != currentFilter) {
     // TODO: start loading animation
     reorderListItems(newFilter, (success) => {
@@ -251,7 +219,9 @@ function repositionMarkersFromObjs() {
   // move the markers to match the first four list
   // items, and make sure they're visible
   for (let i = 0; i < 4; i++) {
-    markers[i].setPosition({lat: listItems[i].lat, lng: listItems[i].lng});
+    markers[i].setPosition({
+      lat: listItems[i].lat, 
+      lng: listItems[i].lng});
     markers[i].setVisible(true);
   }
 }
