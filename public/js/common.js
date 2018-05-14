@@ -68,6 +68,27 @@ function calcColorIcon(c) {
   };
 }
 
+function getBestNetwork(speeds) {
+  let max = 0;
+  let index = -1;
+  for (let i = 0; i < speeds.length; i++) {
+    if (speeds[i] > max) {
+      max = speeds[i];
+      index = i;
+    }
+  }
+  switch (index) {
+    case 0:
+      return 'UCSD Protected';
+    case 1: 
+      return 'UCSD Guest';
+    case 2:
+      return 'RESNET';
+    default:
+      return '--'; // if all the speeds are 0, return '--'
+  }
+}
+
 // javascript objects x and y must have fields lat and lng defined
 function calcDist(a, b) {
   return Math.sqrt(Math.pow(a.lat - b.lat, 2) + Math.pow(a.lng - b.lng, 2));

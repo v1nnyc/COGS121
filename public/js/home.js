@@ -237,26 +237,25 @@ function networkClicked(newNetwork) {
 function createListFromObjs() {
   const listContainer = $('#list-results');
   for (let i = 0; i < listItems.length; i++) {
+    const color = calcColor(listItems[i].speeds[currentNetwork]);
+    const bestNetwork = getBestNetwork(listItems[i].speeds);
     htmlString = ' <div class="card">' +
-
                     '<div class="list-pic">' +
                       '<img src="' + listItems[i].image + '" alt="' + 
                           listItems[i].name + '" class="float-left img-responsive"/>' +
                     '</div>' +
                     '<div class="list-result-info">' +
                       '<h2 class="list-result-title padding-top-10">' + (i+1) + '. ' + listItems[i].name + '</h2>' +
-                      '<p>Best WiFi Network: </p>' +
+                      '<p>Best WiFi Network: ' + bestNetwork + '</p>' +
                       '<div class="row no-gutters padding-top-10">' +
                       '<div class="col-8"><p>Avg Speed:</p>' + 
-                          ' <span class="' + calcColor(listItems[i].speeds[currentNetwork]) + 
+                          ' <span class="' + color + 
                           '-speed">•</span>' + listItems[i].speeds[currentNetwork] + ' Mbps</div>' +
                       '<div class="col-4"><p>Distance: </p> 500ft</div>' +
                       '</div>' +
                       '<p class="padding-top-10 grey"> Last updated: Today at 3:21PM</p>' +
                     '</div>' +
-                    //'<br style="clear: both;" />' +
                   '</div>';
-                  //'<br style="clear: left;" />';
     var div = document.createElement('div');
     div.innerHTML = htmlString.trim();
     listContainer.append(div.firstChild);
