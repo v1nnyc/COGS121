@@ -35,7 +35,13 @@ exports.dots = function(req, res) {
     // callback function to run when the query finishes:
     (err, dots) => {
       if (dots.length > 0) {
-        res.send(dots);
+        // create array to return, each list will correspond to 
+        // one network's dots (index 0 is protected, 1 is guest, etc)
+        const dotLists = [[], [], []];
+        dots.forEach(dot => {
+          dotLists[networks[dot.network]].push(dot);
+        });
+        res.send(dotLists);
       } else {
         res.send({}); // failed, return an empty object instead of undefined
       }

@@ -20,15 +20,18 @@ const networkId = {
   2: '#resnet'
 };
 
+// reference to original marker data
 let listItems = [];
+// references to the map marker objects
 let markers = [];
+// reference to the original dot data
+let dotsList = [];
+// references to the map dot objects
 let dots = [];
 // default filter is fastest
 let currentFilter = filter.FASTEST;
 // default network is UCSD protected
 let currentNetwork = network.PROTECTED;
-
-
 
 
 $(document).ready(() => {
@@ -81,15 +84,27 @@ function initMap() {
 
   // create internet speed dots on map
   doAjaxGet('/getDots', (data) => {
-    data.forEach(function(dot) {
-      if(dot.lat && dot.lng && dot.speed){
-        const marker = new google.maps.Marker({
-          position: {lat: dot.lat, lng: dot.lng},
-          icon: calcColorIcon(calcColor(dot.speed)),
-          map: map
-        });
+    dotsList = data;
+    // find network with the most dots
+    let maxDotCount = 0;
+    dotsList.forEach(list => { 
+      if (list.length > maxDotCount) {
+        maxDotCount = list.length;
       }
     });
+
+    // create enough dots for largest network, make them invisible
+    for (let i = 0; i < maxDotCount; i++) {
+      const dot = new google.maps.Marker({
+        position: center,
+        icon: 'images/green-marker.png',
+        map: map,
+        visible: false
+      });
+      dots.push(dot);
+    }
+
+    repositionDotsFromObjs();
   });
 
   // create 4 invisible markers to be used for list results
@@ -201,7 +216,7 @@ function networkClicked(newNetwork) {
     // reorder list and markers based on currentNetwork
     reorderListItems(currentFilter, (success) => {
       if (success) {
-        // TODO: should call repositionDots here
+        repositionDotsFromObjs();
       } else {
         // change currentNetwork back to original
         currentNetwork = oldNetwork;
@@ -217,6 +232,8 @@ function networkClicked(newNetwork) {
   }
 }
 
+// uses the current ordering of listItems to recreate the list results
+// in the correct order
 function createListFromObjs() {
   const listContainer = $('#list-results');
   for (let i = 0; i < listItems.length; i++) {
@@ -246,7 +263,8 @@ function createListFromObjs() {
   }
 }
 
-
+// uses the current ordering of ListItems to reposition the numbered icons
+// to match the list results
 function repositionMarkersFromObjs() {
   // move the markers to match the first four list
   // items, and make sure they're visible
@@ -255,5 +273,22 @@ function repositionMarkersFromObjs() {
       lat: listItems[i].lat, 
       lng: listItems[i].lng});
     markers[i].setVisible(true);
+  }
+}
+
+// uses currentNetwork to determine which dots should appear on the map
+function repositionDotsFromObjs() {
+  for (let i = 0; i < dots.length; i++) {
+    // show the dot based on list of dots for currentNetwork 
+    if (i < dotsList[currentNetwork].length) {
+      const lat = dotsList[currentNetwork][i].lat;
+      const lng = dotsList[currentNetwork][i].lng;
+      dots[i].setPosition({lat: lat, lng: lng});
+      dots[i].setIcon(calcColorIcon(
+        calcColor(dotsList[currentNetwork][i].speed)));
+      dots[i].setVisible(true);
+    } else { // this is an extra dot, don't show
+      dots[i].setVisible(false);
+    }
   }
 }
