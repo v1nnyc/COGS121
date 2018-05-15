@@ -26,28 +26,7 @@ a {
 	padding-left: 15px;
 }
 
-.crappy-button {
-	float: left;
-    width: 150px;
-    border-radius: 10px;
-    vertical-align: middle;
-    height: 40px;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-bottom: 15px;
-    margin: 0px 15px 15px 15px;
-}
-
-.highlighted {
-	background-color: #999999;
-}
-
-.deHighlighted {
-	background-color: #d1d1d1;
-}
-
 #contribute {
-	background-color: #d1d1d1;
 	float: right;
 }
 
@@ -58,11 +37,6 @@ a {
 
 
 /* List Section */
-/* #list-results {
-	float: left;
-	width: 35%;
-	margin: 0px;
-}*/
 
 .list-result {
 	margin-bottom: 15px;
@@ -123,8 +97,6 @@ a {
 
 /* Map Section */
 #map {
-	/* float: left; */
-	/* width: 60%; */
 	height: 80%;
 	margin: 0px 0px 0px 0px;
 }
