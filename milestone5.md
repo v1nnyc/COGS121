@@ -22,5 +22,5 @@ The user is able to filter the list results and numbered markers by either 1) th
 # User Action 2
 The user is able to change which network they are seeing information for, by using the other toggle at the top of the page. When selecting a different network to display, the list items will update to show the average speed for that network, and the numbered markers will update accordingly. Also, the "dots", or the small circles which represent individual speed tests, will update to show the speed tests on that network. 
 
-#User Action 3
+# User Action 3
 The user is able to test their current wifi speed, by clicking the "contribute" button, and clicking add my internet speed. When the speed is finished testing, they will get confirmation of their speed, and then the main page will show their speed "dot" on the map. 
