@@ -8,33 +8,39 @@
 
   <body>
     <div class="container-fluid">
-      <div id="row no-gutters">
+      <div class="row no-gutters padding-top-10 divider-bottom">
 
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-outline-secondary active" id="fastest">
-            <input type="radio" name="options"  autocomplete="off" checked> Fastest
-          </label>
-          <label class="btn btn-outline-secondary" id="closest">
-            <input type="radio" name="options" autocomplete="off"> Closest
-          </label>
+        <div class="col-md-3 col-lg-2 d-none d-md-block">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-secondary active" id="fastest">
+              <input type="radio" name="options"  autocomplete="off" checked> Fastest
+            </label>
+            <label class="btn btn-outline-secondary" id="closest">
+              <input type="radio" name="options" autocomplete="off"> Closest
+            </label>
+          </div>
         </div>
 
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-outline-secondary active" id="protected">
-            <input type="radio" name="options"  autocomplete="off" checked> UCSD Protected
-          </label>
-          <label class="btn btn-outline-secondary" id="guest">
-            <input type="radio" name="options" autocomplete="off"> UCSD Guest
-          </label>
-          <label class="btn btn-outline-secondary" id="resnet">
-            <input type="radio" name="options" autocomplete="off"> RESNET
-          </label>
+        <div class="col-md-6 col-lg-6 d-none d-md-block">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-secondary active" id="protected">
+              <input type="radio" name="options"  autocomplete="off" checked> UCSD Protected
+            </label>
+            <label class="btn btn-outline-secondary" id="guest">
+              <input type="radio" name="options" autocomplete="off"> UCSD Guest
+            </label>
+            <label class="btn btn-outline-secondary" id="resnet">
+              <input type="radio" name="options" autocomplete="off"> RESNET
+            </label>
+          </div>
         </div>
 
-        <label class="btn btn-outline-secondary" id="contribute">Contribute</label>
-        <br style="clear: left;" />
-      </div>
-      <div class="break"></div>
+        <div class="col-md-3 col-lg-4">
+          <label class="btn btn-gradient btn-block" id="contribute">Contribute</label>
+        </div>
+
+    </div>
+
 
       <div class="row no-gutters">
         <div class="col-sm-7 col-md-6 col-lg-5">
