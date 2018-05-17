@@ -41,7 +41,7 @@ $(document).ready(() => {
   });
 
   // When the user clicks on the 'x' or on cancel, close popup
-  $('.close-popup, .cancel').click(() => {
+  $('.close-popup, .cancel, #close').click(() => {
       $('.popup-container').hide();
   });
 
@@ -87,7 +87,7 @@ function initMap() {
     dotsList = data;
     // find network with the most dots
     let maxDotCount = 0;
-    dotsList.forEach(list => { 
+    dotsList.forEach(list => {
       if (list.length > maxDotCount) {
         maxDotCount = list.length;
       }
@@ -241,15 +241,15 @@ function createListFromObjs() {
     const bestNetwork = getBestNetwork(listItems[i].speeds);
     htmlString = ' <div class="card">' +
                     '<div class="list-pic">' +
-                      '<img src="' + listItems[i].image + '" alt="' + 
+                      '<img src="' + listItems[i].image + '" alt="' +
                           listItems[i].name + '" class="float-left img-responsive"/>' +
                     '</div>' +
                     '<div class="list-result-info">' +
                       '<h2 class="list-result-title padding-top-10">' + (i+1) + '. ' + listItems[i].name + '</h2>' +
                       '<p>Best WiFi Network: ' + bestNetwork + '</p>' +
                       '<div class="row no-gutters padding-top-10">' +
-                      '<div class="col-8"><p>Avg Speed:</p>' + 
-                          ' <span class="' + color + 
+                      '<div class="col-8"><p>Avg Speed:</p>' +
+                          ' <span class="' + color +
                           '-speed">•</span>' + listItems[i].speeds[currentNetwork] + ' Mbps</div>' +
                       '<div class="col-4"><p>Distance: </p> 500ft</div>' +
                       '</div>' +
@@ -269,7 +269,7 @@ function repositionMarkersFromObjs() {
   // items, and make sure they're visible
   for (let i = 0; i < 4; i++) {
     markers[i].setPosition({
-      lat: listItems[i].lat, 
+      lat: listItems[i].lat,
       lng: listItems[i].lng});
     markers[i].setVisible(true);
   }
@@ -278,7 +278,7 @@ function repositionMarkersFromObjs() {
 // uses currentNetwork to determine which dots should appear on the map
 function repositionDotsFromObjs() {
   for (let i = 0; i < dots.length; i++) {
-    // show the dot based on list of dots for currentNetwork 
+    // show the dot based on list of dots for currentNetwork
     if (i < dotsList[currentNetwork].length) {
       const lat = dotsList[currentNetwork][i].lat;
       const lng = dotsList[currentNetwork][i].lng;

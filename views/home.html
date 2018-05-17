@@ -52,24 +52,43 @@
 
     <div class="popup-container" id="add-speed-container">
       <div id="speed-popup">
-        <span class="close-popup">&times;</span>
-        <h3>Add Internet Speed</h3>
-        <h4>Are you sure you want to share this information with our site? </h4>
-        <p>We will only record your internet speed, current location and the time this information was taken. </p>
-        <img id="record-speed-img" src="images/recording.png" alt="Recording speed">
-        <p>Your contribution will help keep campus informed and on the fastest wifi UCSD has to offer!</p>
-        <button id="add-speed">Record Internet Speed</button>
-        <button class="cancel">Cancel</button>
+        <div class="icon-containter">
+          <img src="images/wifi-icon.png" alt="wifi-icon" class="confirmation-icon">
+        </div>
+        <div class="modal-containter">
+          <span class="close-popup">&times;</span>
+          <h3 id="speed-popup-title">Add Internet Speed</h3>
+          <p id="speed-popup-text">We appreciate your generous contribution to making WiFi more
+            accessible at UC San Diego! By clicking “Record Speed”, you are
+            agreeing to share your internet speed test results, current location,
+             and the time this information was taken.</p>
+          <!-- <img id="record-speed-img" src="images/recording.png" alt="Recording speed"> -->
+          <div class="select-network">
+            <p id="select-network-text">Select your current network: </p>
+            <select class="choose-network">
+              <option value="protected">UCSD PROTECTED</option>
+              <option value="guest">UCSD GUEST</option>
+              <option value="resnet">RESNET</option>
+            </select>
+          </div>
+          <button id="add-speed">Record Speed</button>
+        </div>
       </div>
     </div>
 
-    <div class="popup-container" id="confirmation-container">
+    <div class="popup-container" class="modal-containter" id="confirmation-container">
       <div id="confirmation-popup">
+        <div class="icon-containter col-4">
+          <img src="images/confirmation-icon.png" alt="confirmation-icon" class="confirmation-icon">
+        </div>
+        <div class="modal-containter">
         <span class="close-popup">&times;</span>
         <h3 id="confirmation-title"></h3>
         <p id="confirmation-text"></p>
-        <a href="/home"><button>Close</button></a>
+        <!-- TODO: make the link work -->
+        <button id="close">Close</button>
       </div>
+    </div>
     </div>
 
     <div id="locationDataModal" class="modal fade" role="dialog">
@@ -94,6 +113,7 @@
     <script src="js/common.js"></script>
     <script src="js/addSpeed.js"></script>
     <script src="js/home.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
