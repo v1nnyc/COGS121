@@ -7,14 +7,24 @@
   </head>
 
   <body>
+    <div id="googlemaps"></div>
     <div class="container">
       <div class="row justify-content-center mt-10">
+        <div class="col-sm-2">
+          <img src="images/wifi-icon.png" class="float-left" alt="...">
+        </div>
         <div class="col-sm-6">
           <h1 class="jumbotron-heading">UC San Diego WiFi Map</h1>
+          <img=
           <p >By clicking "Discover WiFi Spots Near Me," you are agreeing to share your location data with UC San Diego WiFi Map. We will only use your location data to display relevant results and will not collect any other information without your explicit consent.</p>
-          <a href="/home"><button id="view" class="btn btn-primary contact">View WiFi Map</button></a>
+          <a href="/home"><button id="view" class="btn btn-gradient btn-block">View WiFi Map</button></a>
         </div>
       </div>
     </div>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWfuiGEQ4OE7D5wlEQ2wYIWerJeYqiq5Q&callback=initMap">
+    </script>
+    <script src="js/title.js"></script>
   </body>
 </html>
