@@ -57,6 +57,14 @@ $(document).ready(() => {
   $('#guest').click(() => networkClicked(network.GUEST));
   $('#resnet').click(() => networkClicked(network.RESNET));
 
+  // change marker color on mouseover
+  $('body').on('mouseover', '.list-card', function () {
+     highlightMarker(parseInt($(this).attr('id')));
+  });
+  $('body').on('mouseout', '.list-card', function () {
+     deHighlightMarker(parseInt($(this).attr('id')));
+  });
+
 });
 
 
@@ -69,7 +77,7 @@ function initMap() {
   const center = {lat: 32.881214, lng: -117.237449};
   //store map as global variable
   const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 16,
     center: center
   });
 
@@ -239,7 +247,7 @@ function createListFromObjs() {
   for (let i = 0; i < listItems.length; i++) {
     const color = calcColor(listItems[i].speeds[currentNetwork]);
     const bestNetwork = getBestNetwork(listItems[i].speeds);
-    htmlString = ' <div class="card">' +
+    htmlString = ' <div class="card list-card" id="' + i + '">' +
                     '<div class="list-pic">' +
                       '<img src="' + listItems[i].image + '" alt="' +
                           listItems[i].name + '" class="float-left img-responsive"/>' +
@@ -289,5 +297,17 @@ function repositionDotsFromObjs() {
     } else { // this is an extra dot, don't show
       dots[i].setVisible(false);
     }
+  }
+}
+
+function highlightMarker(ind) {
+  if (ind < 4) {
+    markers[ind].setIcon('images/marker-' + (ind + 1) + '-highlighted.png');
+  }
+}
+
+function deHighlightMarker(ind) {
+  if (ind < 4) {
+    markers[ind].setIcon('images/marker-' + (ind + 1) + '.png');
   }
 }
