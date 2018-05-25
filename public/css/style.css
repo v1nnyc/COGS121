@@ -104,6 +104,7 @@ a {
 
 /* Popups */
 .popup-container{
+	min-width: 576px;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -121,12 +122,12 @@ a {
 #speed-popup, #confirmation-popup {
   background-color: #fefefe;
   margin: auto;
-  /* padding: 20px; */
   border: 1px solid #888;
   width: 80%;
   height: 500px;
   text-align: center;
 	border-radius: 10px;
+	/* padding: 5%; */
 }
 
 #record-speed-img {
@@ -136,7 +137,6 @@ a {
 
 .icon-containter{
 	position: absolute;
-	width: 30%;
 	height: 500px;
 	background: linear-gradient(111.09deg, #4BA0EA 0%, #7B55F8 100%);
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -147,20 +147,21 @@ a {
 
 .modal-containter{
 	float: right;
-	width: 63%;
+	background: #F2F2F2;
+	/* width: 63%; */
 	height: 500px;
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 10px;
+	/* min-width: 492px;
+	min-height: 500px; */
 }
 
 
 #add-speed{
-	position: absolute;
-	padding-left:2%;
-	padding-right:2%;
-	right: 29%;
-	top: 60.45%;
-	bottom: 32.62%;
+	/* position: absolute; */
+	margin: 0 auto;
+	width: 200px;
+	height: 60px;
 	background: radial-gradient(237.84px at 100% 0%, #44ACE7 0%, #824AF9 100%);
 	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
@@ -171,8 +172,8 @@ a {
 #speed-popup-title{
 	height: 73px;
 	margin: auto;
-  width: 70%;
 	padding: 5%;
+	overflow: auto;
   text-align: center;
 	font-family: Helvetica;
 	font-style: italic;
@@ -185,12 +186,12 @@ a {
 
 
 #speed-popup-text{
-	height: 100px;
+	height: auto;
+	padding: 5%;
+	margin: 5%;
 	margin: auto;
-  width: 100%;
-	padding: 3%;
-	padding-top: 8%;
 	display: inline-block;
+	overflow-y: auto;
 	font-family: Helvetica;
 	font-style: normal;
 	font-weight: normal;
@@ -204,12 +205,13 @@ a {
 	display: inline-block;
 	width: 100%;
 	margin: auto;
-	padding: 15%;
+	margin: 6%;
 }
 
 #select-network-text{
 	display: block;
 	margin: auto;
+	overflow: auto;
   width: 90%;
 	font-family: Helvetica;
 	line-height: 22px;
@@ -231,13 +233,9 @@ a {
 }
 
 #close{
-		position: absolute;
-    padding-left: 2%;
-    padding-right: 2%;
-    right: 32%;
-    top: 45%;
-    padding-bottom: 1%;
-    padding-top: 1%;
+		margin: 10 auto;
+		width: 150px;
+		height: 60px;
     background: radial-gradient(237.84px at 100% 0%, #44ACE7 0%, #824AF9 100%);
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
@@ -245,10 +243,10 @@ a {
 }
 
 #confirmation-title{
-    height: 73px;
-    margin: auto;
-    width: 70%;
+		height: 73px;
+		margin: auto;
     padding: 5%;
+		overflow: auto;
     text-align: center;
     font-family: Helvetica;
     font-style: italic;
@@ -260,11 +258,11 @@ a {
 }
 
 #confirmation-text{
-	 height: 100px;
-	 margin: auto;
-	 width: 50%;
-	 padding-top: 8%;
+	 height: auto;
+	 margin: 5%;
+	 padding: 5%;
 	 display: inline-block;
+	 overflow-y: auto;
 	 font-family: Helvetica;
 	 font-style: normal;
 	 font-weight: normal;
@@ -280,7 +278,7 @@ a {
   float: right;
   font-size: 28px;
   font-weight: bold;
-	padding: 20px;
+	padding: 10px;
 }
 
 .close-popup:hover,

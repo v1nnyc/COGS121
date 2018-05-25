@@ -1,97 +1,107 @@
 <html>
-  <head>
+<head>
   <title>UCSD wifi</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
-    <div class="container-fluid">
-      <div class="row no-gutters padding-top-10 divider-bottom">
+<body>
+  <div class="container-fluid">
+    <div class="row no-gutters padding-top-10 divider-bottom">
 
-        <div class="col-md-3 col-lg-2 d-none d-md-block">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-secondary active" id="fastest">
-              <input type="radio" name="options"  autocomplete="off" checked> Fastest
-            </label>
-            <label class="btn btn-outline-secondary" id="closest">
-              <input type="radio" name="options" autocomplete="off"> Closest
-            </label>
-          </div>
+      <div class="col-md-3 col-lg-2 d-none d-md-block">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-secondary active" id="fastest">
+            <input type="radio" name="options"  autocomplete="off" checked> Fastest
+          </label>
+          <label class="btn btn-outline-secondary" id="closest">
+            <input type="radio" name="options" autocomplete="off"> Closest
+          </label>
         </div>
+      </div>
 
-        <div class="col-md-6 col-lg-6 d-none d-md-block">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-secondary active" id="protected">
-              <input type="radio" name="options"  autocomplete="off" checked> UCSD Protected
-            </label>
-            <label class="btn btn-outline-secondary" id="guest">
-              <input type="radio" name="options" autocomplete="off"> UCSD Guest
-            </label>
-            <label class="btn btn-outline-secondary" id="resnet">
-              <input type="radio" name="options" autocomplete="off"> RESNET
-            </label>
-          </div>
+      <div class="col-md-6 col-lg-6 d-none d-md-block">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-secondary active" id="protected">
+            <input type="radio" name="options"  autocomplete="off" checked> UCSD Protected
+          </label>
+          <label class="btn btn-outline-secondary" id="guest">
+            <input type="radio" name="options" autocomplete="off"> UCSD Guest
+          </label>
+          <label class="btn btn-outline-secondary" id="resnet">
+            <input type="radio" name="options" autocomplete="off"> RESNET
+          </label>
         </div>
+      </div>
 
-        <div class="col-md-3 col-lg-4">
-          <label class="btn btn-gradient btn-block" id="contribute">Contribute</label>
-        </div>
-
-    </div>
-
-
-      <div class="row no-gutters">
-        <div class="col-sm-7 col-md-6 col-lg-5">
-          <div id="list-results"></div>
-        </div>
-        <div class="col-sm-5 col-md-6 col-lg-7 d-none d-sm-block">
-          <div id="map"></div>
-        </div>
+      <div class="col-md-3 col-lg-4">
+        <label class="btn btn-gradient btn-block" id="contribute">Contribute</label>
       </div>
 
     </div>
 
-    <div class="popup-container" id="add-speed-container">
-      <div id="speed-popup">
-        <div class="icon-containter">
+
+    <div class="row no-gutters">
+      <div class="col-sm-7 col-md-6 col-lg-5">
+        <div id="list-results"></div>
+      </div>
+      <div class="col-sm-5 col-md-6 col-lg-7 d-none d-sm-block">
+        <div id="map"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="popup-container container-fluid" id="add-speed-container">
+    <div id="speed-popup">
+      <div class="row">
+        <div class="icon-containter col col-lg-4 col-md-5 col-sm-4">
           <img src="images/wifi-icon.png" alt="wifi-icon" class="confirmation-icon">
         </div>
-        <div class="modal-containter">
+        <div class="modal-containter col col-lg-8 col-md-7 col-sm-8">
           <span class="close-popup">&times;</span>
-          <h3 id="speed-popup-title">Add Internet Speed</h3>
-          <p id="speed-popup-text">We appreciate your generous contribution to making WiFi more
-            accessible at UC San Diego! By clicking “Record Speed”, you are
-            agreeing to share your internet speed test results, current location,
-             and the time this information was taken.</p>
-          <!-- <img id="record-speed-img" src="images/recording.png" alt="Recording speed"> -->
-          <div class="select-network">
-            <p id="select-network-text">Select your current network: </p>
-            <select class="choose-network">
-              <option value="protected">UCSD PROTECTED</option>
-              <option value="guest">UCSD GUEST</option>
-              <option value="resnet">RESNET</option>
-            </select>
+          <div class="row">
+          <h3 id="speed-popup-title" class="col">Add Internet Speed</h3>
           </div>
-          <button id="add-speed">Record Speed</button>
+          <div class="row">
+            <p id="speed-popup-text" class="col">We appreciate your generous contribution to making WiFi more
+              accessible at UC San Diego! By clicking “Record Speed”, you are
+              agreeing to share your internet speed test results, current location,
+              and the time this information was taken.</p>
+          </div>
+          <div class="row">
+            <div class="select-network col">
+              <p id="select-network-text">Select your current network: </p>
+              <select class="choose-network">
+                <option value="protected">UCSD PROTECTED</option>
+                <option value="guest">UCSD GUEST</option>
+                <option value="resnet">RESNET</option>
+              </select>
+            </div>
+          </div>
+            <button id="add-speed" class="btn btn-gradient btn-block">Record Speed</button>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="popup-container" class="modal-containter" id="confirmation-container">
       <div id="confirmation-popup">
-        <div class="icon-containter col-4">
-          <img src="images/confirmation-icon.png" alt="confirmation-icon" class="confirmation-icon">
+        <div class="row">
+          <div class="icon-containter col col-lg-4 col-md-5 col-sm-4">
+            <img src="images/confirmation-icon.png" alt="confirmation-icon" class="confirmation-icon">
+          </div>
+          <div class="modal-containter col col-lg-8 col-md-7 col-sm-8">
+            <span class="close-popup">&times;</span>
+            <div class="row">
+              <h3 id="confirmation-title" class="row"></h3>
+              <p id="confirmation-text" class="row"></p>
+            </div>
+            <button id="close">Close</button>
+          </div>
         </div>
-        <div class="modal-containter">
-        <span class="close-popup">&times;</span>
-        <h3 id="confirmation-title"></h3>
-        <p id="confirmation-text"></p>
-        <!-- TODO: make the link work -->
-        <button id="close">Close</button>
       </div>
-    </div>
     </div>
 
     <div id="locationDataModal" class="modal fade" role="dialog">
@@ -119,4 +129,4 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
-</html>
+  </html>
