@@ -73,19 +73,19 @@ a {
 }
 
 .green-speed {
-	color: green;
+	color: #079C31;
 	line-height: 0px;
 	font-size: 26px;
 }
 
 .yellow-speed {
-	color: yellow;
+	color: #FBCA1B;
 	line-height: 0px;
 	font-size: 26px;
 }
 
 .red-speed {
-	color: red;
+	color: #BC0202;
 	line-height: 0px;
 	font-size: 26px;
 }
