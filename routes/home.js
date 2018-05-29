@@ -74,6 +74,7 @@ function addAverageSpeeds(dots, markers) {
       if (marker.counts[i] != 0) {
         marker.speeds[i] = marker.speeds[i] / marker.counts[i];
       }
+      marker.speeds[i] = marker.speeds[i].toFixed(2);
     }
   });
 }

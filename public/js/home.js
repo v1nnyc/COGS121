@@ -32,6 +32,8 @@ let dots = [];
 let currentFilter = filter.FASTEST;
 // default network is UCSD protected
 let currentNetwork = network.PROTECTED;
+// indicates if loader is visible
+let loading = false;
 
 
 $(document).ready(() => {
@@ -52,6 +54,7 @@ $(document).ready(() => {
   $('#fastest').click(() => filterClicked(filter.FASTEST));
   $('#closest').click(() => filterClicked(filter.CLOSEST));
 
+
   // changing the network
   $('#protected').click(() => networkClicked(network.PROTECTED));
   $('#guest').click(() => networkClicked(network.GUEST));
@@ -65,6 +68,7 @@ $(document).ready(() => {
      deHighlightMarker(parseInt($(this).attr('id')));
   });
 
+
 });
 
 
@@ -72,6 +76,9 @@ $(document).ready(() => {
 // finishes checking our API key (passed in through
 // the script tag in home.html)
 function initMap() {
+
+  // start loading animation
+  toggleLoading();
 
   // center map around Geisel
   const center = {lat: 32.881214, lng: -117.237449};
@@ -138,6 +145,9 @@ function getListResults() {
     // initially list will be ordered by fastest.
     // don't need to use the callback
     reorderListItems(filter.FASTEST, () => {});
+
+    // end loading animation
+    toggleLoading();
   });
 }
 
@@ -192,7 +202,8 @@ function reorderListItems(filterBy, callback) {
 function filterClicked(newFilter) {
   // don't do anything if the filter clicked is already selected
   if (newFilter != currentFilter) {
-    // TODO: start loading animation
+    // start loading animation
+    toggleLoading();
     reorderListItems(newFilter, (success) => {
       if (success) {
         currentFilter = newFilter; // update the current filter
@@ -208,7 +219,8 @@ function filterClicked(newFilter) {
         $(toDeselect).removeClass('active focus');
       }
 
-      //TODO: end loading animation
+      // end loading animation
+      toggleLoading();
     });
   }
 }
@@ -216,7 +228,8 @@ function filterClicked(newFilter) {
 function networkClicked(newNetwork) {
   // don't do anything if the network clicked is already selected
   if (newNetwork != currentNetwork) {
-    // TODO: start loading animation
+    // start loading animation
+    toggleLoading();
 
     oldNetwork = currentNetwork;
     currentNetwork = newNetwork;
@@ -235,7 +248,8 @@ function networkClicked(newNetwork) {
         $(toDeselect).removeClass('active focus');
       }
 
-      //TODO: end loading animation
+      // end loading animation
+      toggleLoading();
     });
   }
 }
@@ -309,5 +323,17 @@ function highlightMarker(ind) {
 function deHighlightMarker(ind) {
   if (ind < 4) {
     markers[ind].setIcon('images/marker-' + (ind + 1) + '.png');
+  }
+}
+
+function toggleLoading() {
+  if (!loading) {
+    $('#overlay').css('width', '100%');
+    $('.loader').css('display', 'block');
+    loading = true;
+  } else {
+    $('#overlay').css('width', '0%');
+    $('.loader').css('display', 'none');
+    loading = false;
   }
 }
