@@ -35,6 +35,8 @@ let currentNetwork = network.PROTECTED;
 // indicates if loader is visible
 let loading = false;
 
+let currentPosition;
+
 $(document).ready(() => {
 
   // When the user clicks contribute, open add speed popup
@@ -95,6 +97,7 @@ function initMap() {
       icon: "images/current-location.png",
       map: map
     });
+    updateDistances(currentLoc);
   }, () => {}); // do nothing if no location information
 
   // create internet speed dots on map
@@ -118,7 +121,6 @@ function initMap() {
       });
       dots.push(dot);
     }
-
     repositionDotsFromObjs();
   });
 
@@ -138,10 +140,25 @@ function initMap() {
 
 }
 
+function updateDistances(currentLoc){
+  for(var count in listItems){
+    let distance = ((calcDist(currentLoc, listItems[count]) * 3280.84) / 5280).toFixed(2);
+    //if less than 0.5 miles away convert to ft
+    if(distance < 0.5){
+      distance = ((calcDist(currentLoc, listItems[count]) * 3280.84) * 5280).toFixed(2) + " ft";
+    } else {
+      distance = distance + "mi";
+    }
+    listItems[count].distance = distance;
+  }
+  createListFromObjs();
+}
+
 // should only be called once when the initMap function is called
 function getListResults() {
   doAjaxGet('/getMarkers', (data) => {
     listItems = data;
+    console.log();
     // initially list will be ordered by fastest.
     // don't need to use the callback
     reorderListItems(filter.FASTEST, () => {});
@@ -258,6 +275,7 @@ function networkClicked(newNetwork) {
 // in the correct order
 function createListFromObjs() {
   const listContainer = $('#list-results');
+  listContainer.empty();
   for (let i = 0; i < listItems.length; i++) {
     const color = calcColor(listItems[i].speeds[currentNetwork]);
     const bestNetwork = getBestNetwork(listItems[i].speeds);
@@ -273,7 +291,7 @@ function createListFromObjs() {
                       '<div class="col-8"><p>Avg Speed:</p>' +
                           ' <span class="' + color +
                           '-speed">•</span>' + listItems[i].speeds[currentNetwork] + ' Mbps</div>' +
-                      '<div class="col-4"><p>Distance: </p>' + '500ft' + '</div>' +
+                      '<div class="col-4"><p>Distance: </p>' + listItems[i].distance + '</div>' +
                       '</div>' +
                       '<p class="padding-top-10 grey"> Last updated: Today at 3:21PM</p>' +
                     '</div>' +

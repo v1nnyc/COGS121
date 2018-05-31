@@ -20,6 +20,9 @@ exports.markers = function(req, res) {
       if (markers.length > 0) {
         db.all('Select * FROM dots', (err, dots) => {
           addAverageSpeeds(dots, markers);
+          markers.forEach(count => {
+            count.distance = 'loading..';
+          });
           res.send(markers);
         });
       } else {
@@ -35,7 +38,7 @@ exports.dots = function(req, res) {
     // callback function to run when the query finishes:
     (err, dots) => {
       if (dots.length > 0) {
-        // create array to return, each list will correspond to 
+        // create array to return, each list will correspond to
         // one network's dots (index 0 is protected, 1 is guest, etc)
         const dotLists = [[], [], []];
         dots.forEach(dot => {
@@ -59,7 +62,7 @@ function addAverageSpeeds(dots, markers) {
 
   dots.forEach(dot => {
     markers.forEach(marker => {
-      // if the dot is in the marker's radius, add to correct 
+      // if the dot is in the marker's radius, add to correct
       // average speed for that marker
       if((calcDist(marker, dot)) < marker.radius) {
         marker.speeds[networks[dot.network]] += dot.speed;
