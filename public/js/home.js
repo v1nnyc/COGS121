@@ -142,12 +142,15 @@ function initMap() {
 
 function updateDistances(currentLoc){
   for(var count in listItems){
-    let distance = ((calcDist(currentLoc, listItems[count]) * 3280.84) / 5280).toFixed(2);
+    let distance = ((calcDist(currentLoc, listItems[count]) * 3280.84) / 5280);
+    console.log(distance);
     //if less than 0.5 miles away convert to ft
-    if(distance < 0.5){
-      distance = ((calcDist(currentLoc, listItems[count]) * 3280.84) * 5280).toFixed(2) + " ft";
+    if(distance < 0.3){
+      //console.log((calcDist(currentLoc, listItems[count]) * 3280.84) * 1);
+      distance = (distance * 5280).toFixed(2) + " ft";
+
     } else {
-      distance = distance + "mi";
+      distance = distance.toFixed(2) + "mi";
     }
     listItems[count].distance = distance;
   }
