@@ -1,5 +1,8 @@
 // Call successFunction, passing in the current location,
 // if we're able to get current location.
+let lat = 0;
+let lng = 0;
+
 function checkForCurrentLocation(successFunction, failureFunction) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -19,6 +22,29 @@ function checkForCurrentLocation(successFunction, failureFunction) {
   else {
     console.log("Failed to get current location information.");
     failureFunction();
+  }
+}
+
+function getDist(item, callback){
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let dist = Math.sqrt(Math.pow(position.coords.latitude - item.lat, 2) +
+        Math.pow(position.coords.longitude - item.lng, 2));
+        console.log("Got position data: Lat = " + dist);
+        callback(item, Math.sqrt(Math.pow(position.coords.latitude - item.lat, 2) +
+        Math.pow(position.coords.longitude - item.lng, 2)));
+      },
+      // This function will be called if permission is denied.
+      (error) => {
+        console.log("Failed to get current location information.");
+        callback(item, '-');
+    });
+  }
+  // this will be called if the browser doesn't support geolocation
+  else {
+    console.log("Failed to get current location information.");
+    callback(item, '-');
   }
 }
 
@@ -80,7 +106,7 @@ function getBestNetwork(speeds) {
   switch (index) {
     case 0:
       return 'UCSD Protected';
-    case 1: 
+    case 1:
       return 'UCSD Guest';
     case 2:
       return 'RESNET';

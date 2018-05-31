@@ -35,8 +35,8 @@ let currentNetwork = network.PROTECTED;
 // indicates if loader is visible
 let loading = false;
 
-
 $(document).ready(() => {
+
   // When the user clicks contribute, open add speed popup
   $('#contribute').click(() => {
       $('#add-speed-container').show();
@@ -273,7 +273,7 @@ function createListFromObjs() {
                       '<div class="col-8"><p>Avg Speed:</p>' +
                           ' <span class="' + color +
                           '-speed">•</span>' + listItems[i].speeds[currentNetwork] + ' Mbps</div>' +
-                      '<div class="col-4"><p>Distance: </p> 500ft</div>' +
+                      '<div class="col-4"><p>Distance: </p>' + '500ft' + '</div>' +
                       '</div>' +
                       '<p class="padding-top-10 grey"> Last updated: Today at 3:21PM</p>' +
                     '</div>' +

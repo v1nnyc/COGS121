@@ -39,6 +39,7 @@ a {
 /* List Section */
 
 .list-result {
+	height: 200px;
 	margin-bottom: 15px;
 }
 
@@ -291,7 +292,7 @@ a {
 
 /* loading overlay */
 
-#overlay {   
+#overlay {
     height: 100%;
     width: 0;
     position: fixed; /* Stay in place */

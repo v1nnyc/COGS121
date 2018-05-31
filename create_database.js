@@ -22,6 +22,27 @@ db.serialize(() => {
   db.run("INSERT INTO markers VALUES('32.881130',  '-117.237556', 'Geisel Library', 'images/geisel.jpg', '.0007')");
   db.run("INSERT INTO markers VALUES('32.877879',  '-117.237243', 'Center Hall', 'images/center_hall.jpg', '.0006')");
   db.run("INSERT INTO markers VALUES('32.880153',  '-117.236093', 'Commuter Lounge', 'images/commuter_lounge.jpg', '.0006')");
+  db.run("INSERT INTO markers VALUES('32.877782',  '-117.239793', 'Mandeville', 'images/mandeville.jpg', '0.0085')");
+  db.run("INSERT INTO markers VALUES('32.874034',  '-117.242431', 'Revelle Reshalls', 'images/revelle_res.jpg', '0.00030103986447873877')");
+  db.run("INSERT INTO markers VALUES('32.873794',  '-117.243065', 'Revelle Apartments', 'images/revelle_res.jpg', '0.00030504098085350304')");
+  db.run("INSERT INTO markers VALUES('32.878336',  '-117.243140', 'Muir Apartments', 'images/muir_apart.jpg', '0.0003514612354251014')");
+  db.run("INSERT INTO markers VALUES('32.879252',  '-117.243261', 'Muir Reshalls', 'images/muir_res.jpg', '0.0003514612354251014')");
+  db.run("INSERT INTO markers VALUES('32.883253',  '-117.243314', 'Marshall Reshalls', 'images/marshall_res.jpg', '0.0003507506236626472')");
+  db.run("INSERT INTO markers VALUES('32.883203',  '-117.241392', 'Marshall Apartments', 'images/marshall_apart.jpeg', '0.0006850029196918468')");
+  db.run("INSERT INTO markers VALUES('32.885429',  '-117.243150', 'ERC Reshalls', 'images/erc_res.jpeg', '0.0006244909927305074')");
+  db.run("INSERT INTO markers VALUES('32.885782',  '-117.241802', 'ERC Apartments', 'images/erc_apart.jpeg', '0.0006862863833759381')");
+  db.run("INSERT INTO markers VALUES('32.888429',  '-117.242647', 'The Village', 'images/the_village.jpg', '0.0006090065681057408')");
+  db.run("INSERT INTO markers VALUES('32.884281',  '-117.232328', 'Warren Reshalls', 'images/warren_res.jpg', '0.0007483167778485884')");
+  db.run("INSERT INTO markers VALUES('32.882845',  '-117.232991', 'Warren Apartments', 'images/warren_apart.jpg', '0.0010653360971975504')");
+  db.run("INSERT INTO markers VALUES('32.877939',  '-117.232912', 'Sixth Reshalls', 'images/sixth_res.jpeg', '0.0006188642823784831')");
+  db.run("INSERT INTO markers VALUES('32.878556',  '-117.230422', 'Sixth Apartments', 'images/sixth_apart.jpeg', '0.0013859769117861005')");
+  db.run("INSERT INTO markers VALUES('32.875514',  '-117.236976', 'Biomedical Library', 'images/biomed.jpg', '0.0006165070964654991')");
+  db.run("INSERT INTO markers VALUES('32.879979',  '-117.240248', 'Peterson Hall', 'images/peterson.jpg', '0.00024201859432703454')");
+  db.run("INSERT INTO markers VALUES('32.873839',  '-117.240953', 'Galbraith', 'images/galbraith.jpg', '0.00034201859432703454')");
+  db.run("INSERT INTO markers VALUES('32.874562',  '-117.239970', 'York', 'images/york.jpg', '0.00084201859432703454')");
+  db.run("INSERT INTO markers VALUES('32.880080',  '-117.237149', 'Sungod Lounge', 'images/sungodlounge.png', '0.00024201859432703454')");
+  db.run("INSERT INTO markers VALUES('32.878285',  '-117.241684', 'HSS', 'images/hss.jpg', '0.0007')");
+  db.run("INSERT INTO markers VALUES('32.878676',  '-117.242564', 'Moms', 'images/moms.jpg', '0.00006200806399156833')");
 });
 
 db.close();
