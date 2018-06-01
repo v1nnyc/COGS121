@@ -42,7 +42,7 @@ db.serialize(() => {
   db.run("INSERT INTO markers VALUES('32.874562',  '-117.239970', 'York', 'images/york.jpg', '0.00084201859432703454')");
   db.run("INSERT INTO markers VALUES('32.880080',  '-117.237149', 'Sungod Lounge', 'images/sungodlounge.png', '0.00024201859432703454')");
   db.run("INSERT INTO markers VALUES('32.878285',  '-117.241684', 'HSS', 'images/hss.jpg', '0.0007')");
-  db.run("INSERT INTO markers VALUES('32.878676',  '-117.242564', 'Moms', 'images/moms.jpg', '0.00006200806399156833')");
+  db.run("INSERT INTO markers VALUES('32.878676',  '-117.242564', 'Middle of Muir', 'images/moms.jpg', '0.00006200806399156833')");
 });
 
 db.close();

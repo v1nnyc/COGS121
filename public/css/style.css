@@ -1,10 +1,7 @@
 /* General */
 body {
-	/*font-family: Arial, Helvetica, sans-serif;*/
 	font-family: "Roboto", sans-serif;
 	background-color: #F2F2F2 !important;
-	/*padding: 0px;
-	margin: 0px;*/
 }
 
 .break {
@@ -22,21 +19,25 @@ a {
 
 
 /* Button Section */
-.text-label {
-	padding-left: 15px;
-}
 
-#contribute {
-	float: right;
-}
-
-#contribute:hover {
-	cursor: pointer;
+#add-speed{
+	/* position: absolute; */
+	margin: 0 auto;
+	width: 200px;
+	height: 60px;
+	background: radial-gradient(237.84px at 100% 0%, #44ACE7 0%, #824AF9 100%);
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+	border-radius: 50px;
+	color: #fff;
 }
 
 
 
 /* List Section */
+
+#list-results {
+	overflow: scroll;
+}
 
 .list-result {
 	height: 200px;
@@ -68,7 +69,7 @@ a {
 }
 
 .list-pic img {
-	width: 215px; /* You can set the dimensions to whatever you want */
+	width: 215px; 
   height: 135px;
   object-fit: cover;
 }
@@ -97,6 +98,7 @@ a {
 
 
 /* Map Section */
+
 #map {
 	height: 88%;
 	margin: 0em 0em 0em 1em;
@@ -104,6 +106,7 @@ a {
 
 
 /* Popups */
+
 .popup-container{
 	min-width: 576px;
   display: none; /* Hidden by default */
@@ -128,7 +131,6 @@ a {
   height: 500px;
   text-align: center;
 	border-radius: 10px;
-	/* padding: 5%; */
 }
 
 #record-speed-img {
@@ -158,16 +160,7 @@ a {
 }
 
 
-#add-speed{
-	/* position: absolute; */
-	margin: 0 auto;
-	width: 200px;
-	height: 60px;
-	background: radial-gradient(237.84px at 100% 0%, #44ACE7 0%, #824AF9 100%);
-	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
-	border-radius: 50px;
-	color: #fff;
-}
+
 
 
 #speed-popup-title{

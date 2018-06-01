@@ -118,25 +118,23 @@ function calcDist(a, b) {
   //return Math.sqrt(Math.pow(a.lat - b.lat, 2) + Math.pow(a.lng - b.lng, 2));
 }
 
-function calcCrow(a, b)
-    {
-      var R = 6371; // km
-      var dLat = toRad(b.lat-a.lat);
-      var dLon = toRad(b.lng-a.lng);
-      var lat1 = toRad(a.lat);
-      var lat2 = toRad(b.lat);
+function calcCrow(a, b) {
+  var R = 6371; // km
+  var dLat = toRad(b.lat-a.lat);
+  var dLon = toRad(b.lng-a.lng);
+  var lat1 = toRad(a.lat);
+  var lat2 = toRad(b.lat);
 
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-      var d = R * c;
-      return d;
-    }
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c;
+  return d;
+}
 
-function toRad(Value)
-    {
-        return Value * Math.PI / 180;
-    }
+function toRad(Value) {
+  return Value * Math.PI / 180;
+}
 
 // define a generic Ajax error handler:
 // http://api.jquery.com/ajaxerror/

@@ -70,6 +70,9 @@ $(document).ready(() => {
      deHighlightMarker(parseInt($(this).attr('id')));
   });
 
+  
+  $('#list-results').height($('#map').height());
+  $(window).resize(() => $('#list-results').height($('#map').height()));
 
 });
 
@@ -143,10 +146,8 @@ function initMap() {
 function updateDistances(currentLoc){
   for(var count in listItems){
     let distance = ((calcDist(currentLoc, listItems[count]) * 3280.84) / 5280);
-    console.log(distance);
     //if less than 0.5 miles away convert to ft
     if(distance < 0.3){
-      //console.log((calcDist(currentLoc, listItems[count]) * 3280.84) * 1);
       distance = (distance * 5280).toFixed(2) + " ft";
 
     } else {
@@ -161,7 +162,6 @@ function updateDistances(currentLoc){
 function getListResults() {
   doAjaxGet('/getMarkers', (data) => {
     listItems = data;
-    console.log();
     // initially list will be ordered by fastest.
     // don't need to use the callback
     reorderListItems(filter.FASTEST, () => {});
