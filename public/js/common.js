@@ -1,3 +1,11 @@
+/* this file is used if multiple js files use the same method so that we can
+* keep the code cleaner. It is responsible for:
+* 1) getting the location of the user and returning lng/lat coordinates
+* 2) getting the distance between and item and a user (so like markers)
+* 3) ajax get and post calls
+* 4) calculating the color of the dots for the map
+* 5) getting the best network with the highest network speed
+*/
 // Call successFunction, passing in the current location,
 // if we're able to get current location.
 function checkForCurrentLocation(successFunction, failureFunction) {

@@ -1,3 +1,14 @@
+/* This is the file responsible for communicating between the homepage and the
+* server. It is responsible for:
+* 1) exporting the view to show the html
+* 2) getting the markers from the database and initializing an array with all of
+* the info for them.
+* 3) getting the dots from the database and initializing an array with all of
+* the info for them.
+* 4) adding average speeds for all of the markers for each networks
+* 5) method for calculating distance (there's one in the common.js but that's
+* client side)
+*/
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('markers.db');
 
@@ -21,6 +32,7 @@ exports.markers = function(req, res) {
         db.all('Select * FROM dots', (err, dots) => {
           addAverageSpeeds(dots, markers);
           markers.forEach(count => {
+            //if there wasn't a dot for the marker set the date
             if(typeof count.date == 'undefined'){
               count.date = "No Recorded Data";
             }
@@ -41,6 +53,7 @@ exports.dots = function(req, res) {
     // callback function to run when the query finishes:
     (err, dots) => {
       if (dots.length > 0) {
+        //sorting the dots in reverse order based on their timestamp (newest last)
         dots.sort(function(x, y){
           return y.timestamp - x.timestamp;
         });

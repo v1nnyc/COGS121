@@ -5,10 +5,9 @@
 // (e.g., express)
 //
 // To start the server, run:
-//   node app.js
+//   nodemon server.js
 //
 // and open the frontend webpage at http://localhost:3000/
-
 var express = require('express');
 var http = require('http');
 const path = require('path');
@@ -44,21 +43,16 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
 // To learn more about server routing:
 // Express - Hello world: http://expressjs.com/en/starter/hello-world.html
 // Express - basic routing: http://expressjs.com/en/starter/basic-routing.html
 // Express - routing: https://expressjs.com/en/guide/routing.html
-
 app.get('/', titlePage.view);
 app.get('/home', home.view);
 app.get('/getMarkers', home.markers);
 app.get('/getDots', home.dots);
 app.post('/add', addSpeed.add);
 app.get('/titlePage', titlePage.view);
-
-
-
 
 
 app.listen(app.get('port'), () => {

@@ -1,3 +1,9 @@
+/* This is the client side javascript for the home page. It is responsible for:
+* 1) getting the contents from the database that are needed for the homepage
+* 2) initiating the google map
+* 3) calculating the distances from the user to the markers
+* 4) displaying the list of markers (and reordering them based on chosen filter)
+*/
 /* required for reordering list */
 const filter = {
   CLOSEST: 0,

@@ -1,10 +1,15 @@
+
+
 // Attempts to add the user's current location and internet speed to database
 function addSpeed() {
   toggleLoading();
+  let network = document.getElementById("choose-network");
+  let id = (network.options[network.selectedIndex]).value;
+
   checkForCurrentLocation(
     //call this fuction if we get location successfully
     (position) => {
-      doAjaxPost('/add', position, (response) => {
+      doAjaxPost('/add', {pos: position, network: id}, (response) => {
         //pass into giveConfirmation method
         toggleLoading();
         giveConfirmation(response.success, response.speed, '');
@@ -16,8 +21,6 @@ function addSpeed() {
       giveConfirmation(false, 0, 'Unable to retrieve your location.')
     });
 }
-
-
 
 // closes the add speed popup, opens the confirmation popup and populates text accordingly
 function giveConfirmation(successful, speed, errorMessage) {
