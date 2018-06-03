@@ -70,7 +70,7 @@ $(document).ready(() => {
      deHighlightMarker(parseInt($(this).attr('id')));
   });
 
-  
+
   $('#list-results').height($('#map').height());
   $(window).resize(() => $('#list-results').height($('#map').height()));
 
@@ -296,7 +296,7 @@ function createListFromObjs() {
                           '-speed">•</span>' + listItems[i].speeds[currentNetwork] + ' Mbps</div>' +
                       '<div class="col-4"><p>Distance: </p>' + listItems[i].distance + '</div>' +
                       '</div>' +
-                      '<p class="padding-top-10 grey"> Last updated: Today at 3:21PM</p>' +
+                      '<p class="padding-top-10 grey"> Last updated: '+ listItems[i].date +'</p>' +
                     '</div>' +
                   '</div>';
     var div = document.createElement('div');

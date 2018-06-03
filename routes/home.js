@@ -21,6 +21,9 @@ exports.markers = function(req, res) {
         db.all('Select * FROM dots', (err, dots) => {
           addAverageSpeeds(dots, markers);
           markers.forEach(count => {
+            if(typeof count.date == 'undefined'){
+              count.date = "No Recorded Data";
+            }
             count.distance = 'loading..';
           });
           res.send(markers);
@@ -38,6 +41,9 @@ exports.dots = function(req, res) {
     // callback function to run when the query finishes:
     (err, dots) => {
       if (dots.length > 0) {
+        dots.sort(function(x, y){
+          return x.timestamp - y.timestamp;
+        });
         // create array to return, each list will correspond to
         // one network's dots (index 0 is protected, 1 is guest, etc)
         const dotLists = [[], [], []];
@@ -65,6 +71,7 @@ function addAverageSpeeds(dots, markers) {
       // if the dot is in the marker's radius, add to correct
       // average speed for that marker
       if((calcDist(marker, dot)) < marker.radius) {
+        marker.date = dot.date;
         marker.speeds[networks[dot.network]] += dot.speed;
         marker.counts[networks[dot.network]] += 1;
       }
