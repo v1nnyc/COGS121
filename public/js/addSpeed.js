@@ -1,15 +1,18 @@
 // Attempts to add the user's current location and internet speed to database
 function addSpeed() {
+  toggleLoading();
   checkForCurrentLocation(
     //call this fuction if we get location successfully
     (position) => {
       doAjaxPost('/add', position, (response) => {
         //pass into giveConfirmation method
+        toggleLoading();
         giveConfirmation(response.success, response.speed, '');
       });
     },
     // call this function if failed to get location
     () => {
+      toggleLoading();
       giveConfirmation(false, 0, 'Unable to retrieve your location.')
     });
 }
