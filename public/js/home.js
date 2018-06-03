@@ -93,6 +93,34 @@ function initMap() {
     center: center
   });
 
+  //adding the legend
+    var icons = {
+      parking: {
+        name: 'Above 25 Mbps',
+        icon: 'green'
+      },
+      library: {
+        name: 'Above 5 Mbps',
+        icon: 'yellow'
+      },
+      info: {
+        name: 'Slow',
+        icon: 'red'
+      }
+    };
+
+    var legend = document.getElementById('legend');
+         for (var key in icons) {
+           var type = icons[key];
+           var name = type.name;
+           var icon = type.icon;
+           var div = document.createElement('div');
+           div.innerHTML = '<p><span class="' + icon + '-speed legendIcon">•</span>' + name + '</p>';
+           legend.appendChild(div);
+         }
+
+         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
   // add current location marker if current location is available
   checkForCurrentLocation((currentLoc) => {
     const marker = new google.maps.Marker({
