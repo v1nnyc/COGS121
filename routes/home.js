@@ -42,7 +42,7 @@ exports.dots = function(req, res) {
     (err, dots) => {
       if (dots.length > 0) {
         dots.sort(function(x, y){
-          return x.timestamp - y.timestamp;
+          return y.timestamp - x.timestamp;
         });
         // create array to return, each list will correspond to
         // one network's dots (index 0 is protected, 1 is guest, etc)
