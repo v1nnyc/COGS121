@@ -1,3 +1,6 @@
+/* This is the javacsript for the title page, it's just a button and some js
+* for google maps because the background is a dynamic map.
+*/
 //from https://www.labnol.org/internet/embed-google-maps-background/28457/
 
 // The latitude and longitude of your business / place

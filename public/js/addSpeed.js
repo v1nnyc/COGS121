@@ -1,4 +1,7 @@
-
+/* This file is responsible for connecting starting a network speed test once
+* the client clicks the button. Makes an ajax post request and gives confirmation
+* to the client once ajax returns.
+*/
 
 // Attempts to add the user's current location and internet speed to database
 function addSpeed() {
