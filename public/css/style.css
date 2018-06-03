@@ -406,3 +406,22 @@ animation: AnimationName 2s ease infinite;
   left: 0;
   z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
 }
+
+/*Google Maps Legend */
+#legend {
+    font-family: "Roboto", sans-serif;
+    background: #fff;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #DFDFDF;
+		box-shadow: 0 5px 5px rgba(0,0,0,.08);
+  }
+
+h3 {
+	font-size: 18px !important;
+	font-weight: 500;
+}
+
+.legendIcon {
+	line-height: 0px;
+}
