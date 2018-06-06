@@ -34,9 +34,9 @@ exports.markers = function(req, res) {
           markers.forEach(count => {
             //if there wasn't a dot for the marker set the date
             if(typeof count.date == 'undefined'){
-              count.date = "No Recorded Data";
+              count.date = "not available";
             }
-            count.distance = 'loading..';
+            count.distance = '--';
           });
           res.send(markers);
         });
