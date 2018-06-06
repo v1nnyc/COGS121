@@ -13,13 +13,13 @@
   },
   "dependencies": {
     "ajax": "0.0.4",
-    "ejs": "^2.5.9",
+    "ejs": "^2.6.1",
     "express": "3.x",
     "express3-handlebars": "*",
     "jquery": "^3.3.1",
-    "mongodb": "*",
-    "mongoose": "*",
-    "nodemon": "^1.17.3",
+    "mongodb": "^3.0.10",
+    "mongoose": "^5.1.4",
+    "nodemon": "^1.17.5",
     "speedtest-net": "^1.4.2",
     "sqlite3": "^4.0.0"
   },

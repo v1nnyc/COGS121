@@ -4,7 +4,7 @@
 	- Google map APIs
 	- customized markers
 	- record user location
-	- list result filers
+	- list result filters
 	- loading animation
 - Thi Dang
 	- sketch designs
