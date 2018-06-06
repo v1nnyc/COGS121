@@ -172,6 +172,14 @@ function initMap() {
     });
     markers.push(marker);
   }
+  // add an additional 5th marker for mousing over later results
+  const marker = new google.maps.Marker({
+      position: center,
+      icon: 'images/marker-highlighted.png',
+      map: map,
+      visible: false,
+    });
+    markers.push(marker);
 
   getListResults();
 
@@ -372,12 +380,19 @@ function repositionDotsFromObjs() {
 function highlightMarker(ind) {
   if (ind < 4) {
     markers[ind].setIcon('images/marker-' + (ind + 1) + '-highlighted.png');
+  } else {
+    markers[4].setPosition({
+      lat: listItems[ind].lat,
+      lng: listItems[ind].lng});
+    markers[4].setVisible(true);
   }
 }
 
 function deHighlightMarker(ind) {
   if (ind < 4) {
     markers[ind].setIcon('images/marker-' + (ind + 1) + '.png');
+  } else {
+    markers[4].setVisible(false);
   }
 }
 
