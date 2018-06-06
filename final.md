@@ -3,7 +3,7 @@
 - Alia Awni:
 	- Google map APIs
 	- customized markers
-	- record user location 
+	- record user location
 	- list result filers
 	- loading animation
 - Thi Dang
@@ -14,14 +14,14 @@
 	- add dots average speed to UI
 - Vincent Cannalla
 	- calculating internet speed API
-	- set up SQLite database 
+	- set up SQLite database
 	- color code markers according to internet speed
 	- calculate average internet speed at a location
-	- add distance info 
+	- add distance info
 - Yuxuan Zhou (Tammy)
 	- sketch designs on screens and logos
 	- code pop up screens
-	- general ui design changes 
+	- general ui design changes
 	- usability testings
  	- add userinput for wifi network
 
@@ -39,13 +39,11 @@
 - home.js
 	- change networks, record lists, reference markers, call APIs etc.
 - titlePage.js
- - set Google map as background for title page
+	- set Google map as background for title page
 - style.css
 	- styling for UI elements
 - markers.db
 	- database for the map markers
 
-### Link to video (2 min): 
-
-
-
+### Link to video (2 min):
+https://www.youtube.com/watch?v=ApUqfNJw81Q
